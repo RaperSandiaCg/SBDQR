@@ -16,12 +16,10 @@ class CreateEquiposTable extends Migration
         Schema::create('equipos', function (Blueprint $table) {
             $table->id();
 
-            $table->string('tag', 100)->unique()->nullable();
-            $table->string('nombre', 100)->nullable();
+            $table->string('tag', 100)->unique();
+            $table->string('nombre', 100);
 
-            $table->unsignedBigInteger('empresa_id');
 
-            $table->foreign('empresa_id')->references('id')->on('empresas')->cascadeOnUpdate;
 
             $table->timestamps();
         });

@@ -16,16 +16,16 @@ class CreateActividadesTable extends Migration
         Schema::create('actividades', function (Blueprint $table) {
             $table->id();
 
-            $table->string('nombre', 50)->nullable();
-            $table->timestamp('fecha_inicio')->nullable();
-            $table->timestamp('fecha_termino');
-            $table->string('estado', 50);
+            $table->string('nombre', 50);
+            $table->timestamp('fecha_inicio');
+            $table->timestamp('fecha_termino')->nullable();
+            $table->string('estado', 50)->nullable();
 
 
 
-            $table->unsignedBigInteger('equipo_id')->nullable();
+            $table->unsignedBigInteger('equipo_id');
 
-            $table->foreign('equipo_id')->references('id')->on('equipos')->cascadeOnUpdate;
+            $table->foreign('equipo_id')->references('id')->on('equipos')->onDelete('cascade')->onUpdate('cascade');
             
             $table->timestamps();
         });

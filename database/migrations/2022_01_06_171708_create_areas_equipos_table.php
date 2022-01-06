@@ -16,12 +16,12 @@ class CreateAreasEquiposTable extends Migration
         Schema::create('areas_equipos', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('equipo_id')->nullable();
-            $table->unsignedBigInteger('area_id')->nullable();
+            $table->unsignedBigInteger('equipo_id');
+            $table->unsignedBigInteger('area_id');
 
 
-            $table->foreign('equipo_id')->references('id')->on('equipos')->onDelete('cascade');
-            $table->foreign('area_id')->references('id')->on('areas')->onDelete('cascade');
+            $table->foreign('equipo_id')->references('id')->on('equipos')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('area_id')->references('id')->on('areas')->onDelete('cascade')->onUpdate('cascade');
 
 
             $table->timestamps();
