@@ -16,8 +16,8 @@ class CreateAreasEquiposTable extends Migration
         Schema::create('areas_equipos', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('equipo_id');
-            $table->unsignedBigInteger('area_id');
+            $table->unsignedBigInteger('equipo_id')->nullable();
+            $table->unsignedBigInteger('area_id')->nullable();
 
 
             $table->foreign('equipo_id')->references('id')->on('equipos')->onDelete('cascade');

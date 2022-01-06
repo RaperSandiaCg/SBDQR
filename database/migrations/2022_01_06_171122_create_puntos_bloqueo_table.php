@@ -16,10 +16,10 @@ class CreatePuntosBloqueoTable extends Migration
         Schema::create('puntos_bloqueo', function (Blueprint $table) {
             $table->id();
 
-            $table->string('tag', 100)->unique();
-            $table->string('nombre', 100);
+            $table->string('tag', 100)->unique()->nullable();
+            $table->string('nombre', 100)->nullable();
 
-            $table->unsignedBigInteger('equipo_id');
+            $table->unsignedBigInteger('equipo_id')->nullable();
 
             $table->foreign('equipo_id')->references('id')->on('equipos')->cascadeOnUpdate;
 
