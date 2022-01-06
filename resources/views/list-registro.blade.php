@@ -25,7 +25,7 @@
 
 @section('content')
 
-<div class="justify-content-center">
+<div class="d-flex justify-content-center">
     <div class="card card-default col-md-6">
         <div class="card-header">
             <h3 class="card-title">Diciembre</h3>
@@ -37,6 +37,7 @@
             </div>
         </div>
         <div class="card-body">
+
             <div class="accordion" id="accordionExample">
                 <div class="card">
                   <div class="card-header " id="headingOne" >
@@ -84,6 +85,7 @@
               </div>
         </div>
     </div>
+
 
 
 </div>
