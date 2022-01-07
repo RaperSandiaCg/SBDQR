@@ -22,6 +22,11 @@ Route::get('/vista', function () {
 });
 
 Route::resource('actividades', App\Http\Controllers\ActividadeController::class);
+Route::resource('areas', App\Http\Controllers\AreaController::class);
+Route::resource('empresas', App\Http\Controllers\EmpresaController::class);
+Route::resource('equipos', App\Http\Controllers\EquipoController::class);
+Route::resource('puntosbloqueo', App\Http\Controllers\PuntosBloqueoController::class);
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
