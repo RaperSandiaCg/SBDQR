@@ -28,8 +28,7 @@ class CreateUsersTable extends Migration
             $table->string('apellido', 50);
             $table->integer('telefono')->nullable();
             $table->string('tipo', 50);
-            $table->string('cargo', 50);
-
+            $table->string('cargo', 50);            
 
             $table->unsignedBigInteger('empresa_id')->nullable();
 

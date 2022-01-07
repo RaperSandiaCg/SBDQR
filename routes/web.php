@@ -21,6 +21,9 @@ Route::get('/vista', function () {
     return view('list-registro');
 });
 
+Route::resource('actividades', App\Http\Controllers\ActividadeController::class);
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+

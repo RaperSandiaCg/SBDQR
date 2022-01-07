@@ -26,7 +26,9 @@
 @section('content')
 
 <div class="d-flex justify-content-center">
-    <div class="card card-default col-md-6">
+  <div class="col-md-6">
+    {{-- Mes --}}
+    <div class="card card-default ">
         <div class="card-header">
             <h3 class="card-title">Diciembre</h3>
             <div class="card-tools">
@@ -36,6 +38,7 @@
                         class="fas fa-remove"></i></button>
             </div>
         </div>
+
         <div class="card-body">
 
             <div class="accordion" id="accordionExample">
@@ -85,11 +88,15 @@
               </div>
         </div>
     </div>
-
-
-
+    {{-- boton registro --}}
+    <div class="float-right">
+      <a href="{{ route('actividades.create') }}" class="btn btn-primary btn-sm"  data-placement="left">
+        {{ __('Create New') }}
+      </a>
+    </div>
 </div>
-</div>
+
+
 @stop
 
 
