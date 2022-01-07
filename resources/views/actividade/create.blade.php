@@ -11,7 +11,14 @@
 
                 @includeif('partials.errors')
 
-                <div class="card card-default">
+                <form method="POST" action="{{ route('actividades.store') }}"  role="form" enctype="multipart/form-data">
+                    @csrf
+
+                    @include('actividade.form')
+
+                </form>
+
+                {{-- <div class="card card-default">
                     <div class="card-header">
                         <span class="card-title">Create Actividade</span>
                     </div>
@@ -23,7 +30,7 @@
 
                         </form>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>
