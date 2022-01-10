@@ -8,7 +8,7 @@
         <div class="info-box bg-light">
             <div class="info-box-content">
                 <span class="info-box-text text-center text-muted">Área</span>
-                <span class="info-box-text text-center text-muted mb-0">Húmeda</span>
+                <span class="info-box-text text-center text-muted mb-0">Cal</span>
             </div>
         </div>
     </div>
@@ -16,7 +16,7 @@
         <div class="info-box bg-light">
             <div class="info-box-content">
                 <span class="info-box-text text-center text-muted">Equipo</span>
-                <span class="info-box-text text-center text-muted mb-0">Chancador Primario</span>
+                <span class="info-box-text text-center text-muted mb-0">Equipo 1</span>
             </div>
         </div>
     </div>
@@ -136,6 +136,92 @@
                 </div>
             </div>
         </div>
+        
+        {{-- Mes --}}
+        <div class="card card-default ">
+          <div class="card-header">
+              <h3 class="card-title">Enero</h3>
+              <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                          class="fas fa-minus"></i></button>
+                  <button type="button" class="btn btn-tool" data-card-widget="remove"><i
+                          class="fas fa-remove"></i></button>
+              </div>
+          </div>
+  
+          <div class="card-body">
+  
+              <div class="accordion" id="accordionExample">
+                  <div class="card">
+                      <div class="card-header " id="headingOne">
+                          <h2 class="mb-0">
+                              <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
+                                  data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                                  Del 27 al 2 de Enero
+                              </button>
+                          </h2>
+                      </div>
+  
+                      <div id="collapse1" class="collapse" aria-labelledby="headingOne"
+                          data-parent="#accordionExample">
+                          <div class="card-body">
+                          </div>
+                      </div>
+                  </div>
+                  <div class="card">
+                      <div class="card-header" id="headingTwo">
+                          <h2 class="mb-0">
+                              <button class="btn btn-link btn-block text-left collapsed" type="button"
+                                  data-toggle="collapse" data-target="#collapse2" aria-expanded="false"
+                                  aria-controls="collapse2">
+                                  Del 3 al 9 de Enero
+                              </button>
+                          </h2>
+                      </div>
+                      <div id="collapse2" class="collapse" aria-labelledby="headingTwo"
+                          data-parent="#accordionExample">
+                          <div class="card-body">
+  
+                          </div>
+                      </div>
+                  </div>
+                  <div class="card">
+                      <div class="card-header" id="headingThree">
+                          <h2 class="mb-0">
+                              <button class="btn btn-link btn-block text-left collapsed" type="button"
+                                  data-toggle="collapse" data-target="#collapse3" aria-expanded="false"
+                                  aria-controls="collapse3">
+                                  Del 10 al 16 de Enero
+                              </button>
+                          </h2>
+                      </div>
+                      <div id="collapse3" class="collapse" aria-labelledby="headingThree"
+                          data-parent="#accordionExample">
+                          <div class="card-body">
+  
+                          </div>
+                      </div>
+                  </div>
+                  <div class="card">
+                      <div class="card-header" id="headingThree">
+                          <h2 class="mb-0">
+                              <button class="btn btn-link btn-block text-left collapsed" type="button"
+                                  data-toggle="collapse" data-target="#collapse4" aria-expanded="false"
+                                  aria-controls="collapse4">
+                                  Del 17 al 23 de Enero
+                              </button>
+                          </h2>
+                      </div>
+                      <div id="collapse4" class="collapse" aria-labelledby="headingFour"
+                          data-parent="#accordionExample">
+                          <div class="card-body">
+                          
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
         {{-- boton registro --}}
         <div class="float-right">
             <a href="{{ route('actividades.create') }}" class="btn btn-primary btn-sm" data-placement="left">
@@ -143,7 +229,7 @@
             </a>
         </div>
     </div>
-
+</div>
 
     @stop
 
