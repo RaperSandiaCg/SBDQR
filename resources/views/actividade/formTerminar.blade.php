@@ -23,7 +23,18 @@
             <!-- /.input group -->
           </div>
 
-          <!-- Fecha de termino -->
+        <!-- Fecha de termino -->
+          <div class="form-group">
+            <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Fecha de termino:</font></font></label>
+
+            <div class="input-group">
+                <div class="input-group-prepend">
+                <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                </div>
+                <input type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" placeholder="dd/mm/yyyy" data-mask="" im-insert="false">
+            </div>
+            <!-- /.input group -->
+          </div>
 
           <!-- Actividad -->
           <div class="form-group">
@@ -75,6 +86,20 @@
           </div>
 
         </div>
+
+        <div class="form-group">
+            <label for="exampleInputFile"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Entrada de archivo</font></font></label>
+            <div class="input-group">
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" id="exampleInputFile">
+                <label class="custom-file-label" for="exampleInputFile"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Elija el archivo</font></font></label>
+              </div>
+              <div class="input-group-append">
+                <span class="input-group-text" id=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Subir</font></font></span>
+              </div>
+            </div>
+        </div>
+
         <!-- /.card-body -->
 
         <div class="card-footer">
