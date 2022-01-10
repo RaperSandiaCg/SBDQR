@@ -54,7 +54,7 @@
                 <div class="input-group-prepend">
                 <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                 </div>
-                <input type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" placeholder="dd/mm/yyyy" data-mask="" im-insert="false">
+                <input type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" value="10/01/2022" data-mask="" im-insert="false">
             </div>
             <!-- /.input group -->
           </div>
@@ -64,33 +64,32 @@
           <!-- Actividad -->
           <div class="form-group">
             <label for="exampleInputPassword1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Actividad:</font></font></label>
-            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Bomba N2">
+            <input type="text" class="form-control" id="exampleInputPassword1" value="">
           </div>
 
           <!-- Encargado Rut-->
 
           <div class="form-group">
             <label for="exampleInputPassword1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nombre Encargado:</font></font></label>
-            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Miguel Cataño">
+            <input type="text" class="form-control" id="exampleInputPassword1" value="Miguel Cataño">
           </div>
 
           <!-- Encargado nombre-->
 
           <div class="form-group">
             <label for="exampleInputPassword1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Rut Encargado:</font></font></label>
-            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="12345678-9">
+            <input type="text" class="form-control" id="exampleInputPassword1" value="156498765-9">
           </div>
 
           {{-- Puntos de Aislamiento --}}
           <div class="form-group">
             <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Puntos de Aislamiento</font></font></label>
             <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">                  
-              <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1 Punto de Aislamiento</font></font></option>
-              <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2 Puntos de Aislamiento</font></font></option>
-              <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">3 Puntos de Aislamiento</font></font></option>
-              <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">4 Puntos de Aislamiento</font></font></option>
-              <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">5 Puntos de Aislamiento</font></font></option>
-              <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">6 Puntos de Aislamiento</font></font></option>
+              <option>2270-ZM-009-21A</option>
+              <option>2270-ZM-009-04</option>
+              <option>2270-ZM-009-21</option>
+              <option>2270-ZM-009-02</option>
+              <option>2270-ZM-009-20</option>
              </select>{{--<span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="2" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-msie-container"><span class="select2-selection__rendered" id="select2-msie-container" role="textbox" aria-readonly="true" title="Alabama"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Alabama</font></font></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span> --}}
           </div>
 
@@ -98,7 +97,10 @@
           <div class="form-group">
             <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Rut empresa encargada</font></font></label>
             <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">                  
-              <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">12345678-9</font></font></option>
+              <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">89456123-9</font></font></option>
+              <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">87456123-4</font></font></option>
+              <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">79456812-2</font></font></option>
+
              </select>{{--<span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="2" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-msie-container"><span class="select2-selection__rendered" id="select2-msie-container" role="textbox" aria-readonly="true" title="Alabama"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Alabama</font></font></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span> --}}
           </div>
 
@@ -106,7 +108,7 @@
           <div class="form-group">
             <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Personal vinculado</font></font></label>
             <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">                  
-              <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">18 Personas vinculadas</font></font></option>
+              <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Personas vinculadas</font></font></option>
              </select>{{--<span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="2" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-msie-container"><span class="select2-selection__rendered" id="select2-msie-container" role="textbox" aria-readonly="true" title="Alabama"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Alabama</font></font></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span> --}}
           </div>
 

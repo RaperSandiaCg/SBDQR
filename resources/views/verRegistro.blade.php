@@ -77,7 +77,7 @@
                                 <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" disabled>                  
                                   <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1 Punto de Aislamiento</font></font></option>
                                   <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2 Puntos de Aislamiento</font></font></option>
-                                  <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">3 Puntos de Aislamiento</font></font></option>
+                                  <option selected><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">3 Puntos de Aislamiento</font></font></option>
                                   <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">4 Puntos de Aislamiento</font></font></option>
                                   <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">5 Puntos de Aislamiento</font></font></option>
                                   <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">6 Puntos de Aislamiento</font></font></option>
@@ -88,7 +88,7 @@
                               <div class="form-group">
                                 <label><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Rut empresa encargada</font></font></label>
                                 <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true" disabled>                  
-                                  <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">12345678-9</font></font></option>
+                                  <option><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">89456132-9</font></font></option>
                                  </select>{{--<span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="2" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-msie-container"><span class="select2-selection__rendered" id="select2-msie-container" role="textbox" aria-readonly="true" title="Alabama"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Alabama</font></font></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span> --}}
                               </div>
                     
@@ -107,8 +107,8 @@
                                 </button>
 
                                 <!-- Modal -->
-                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal fade " id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalLongTitle">Libro de registro</h5>
@@ -117,23 +117,22 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <img src="https://http2.mlstatic.com/D_NQ_NP_764937-MLC43523683934_092020-O.jpg" alt="Registro" width="300">         
+                                                <img src="http://4.bp.blogspot.com/-X7npgZxUOX4/T60sSpc4J6I/AAAAAAAAAUA/jqk23Vqu5dE/s1600/libro+de+asistencia+los+pozos2.jpg" alt="Registro" width="100%" >         
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                               </div>
                             </div>
-                    
+                            <div class="card-footer">
+                              <a href="vista1" class="btn btn-primary btn-sm"  data-placement="left">
+                                {{ __('Volver') }}
+                              </a>
+                            </div>
                             
                     
                             <!-- /.card-body -->
                     
-                            <div class="card-footer">
-                                <a href="{{ route('actividades.index') }}" class="btn btn-primary btn-sm"  data-placement="left">
-                                  {{ __('Agregar Registro') }}
-                                </a>
-                            </div>
                     
                             {{-- <div class="card-footer">
                               <button href="{{ route('actividades.index') }}" type="submit" class="btn btn-primary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Agregar Registro</font></font></button>

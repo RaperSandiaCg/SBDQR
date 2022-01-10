@@ -21,8 +21,16 @@ Route::get('/vista', function () {
     return view('list-registro');
 });
 
-Route::get('/termianar', function () {
+Route::get('/terminar', function () {
     return view('finalizar');
+});
+
+Route::get('/vista1', function () {
+    return view('actividadterminada');
+});
+
+Route::get('/vista2', function () {
+    return view('verRegistro');
 });
 
 Route::resource('actividades', App\Http\Controllers\ActividadeController::class);

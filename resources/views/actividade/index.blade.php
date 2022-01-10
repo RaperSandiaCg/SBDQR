@@ -88,7 +88,7 @@
         <div class="info-box bg-light">
             <div class="info-box-content">
                 <span class="info-box-text text-center text-muted">Área</span>
-                <span class="info-box-text text-center text-muted mb-0">Húmeda</span>
+                <span class="info-box-text text-center text-muted mb-0">Cal</span>
             </div>
         </div>
     </div>
@@ -96,7 +96,7 @@
         <div class="info-box bg-light">
             <div class="info-box-content">
                 <span class="info-box-text text-center text-muted">Equipo</span>
-                <span class="info-box-text text-center text-muted mb-0">Chancador Primario</span>
+                <span class="info-box-text text-center text-muted mb-0">Equipo 1</span>
             </div>
         </div>
     </div>
@@ -241,23 +241,10 @@
                         </h2>
                     </div>
 
-                    <div id="collapse1" class="collapse show" aria-labelledby="headingOne"
+                    <div id="collapse1" class="collapse " aria-labelledby="headingOne"
                         data-parent="#accordionExample">
                         <div class="">
-                            <div class="table-responsive">
-                                <table class="table ">
-                                    <tbody>
-                                        <tr>
-                                          <td>Lun 28</td>
-                                          <td>20:00</td>
-                                          <td>Mantención Motor</td>
-                                          <td>
-                                            <a class="btn btn-sm btn-warning " href="{{ route('termianar') }}">Terminar</a>
-                                          </td>
-                                      </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -288,10 +275,23 @@
                             </button>
                         </h2>
                     </div>
-                    <div id="collapse3" class="collapse" aria-labelledby="headingThree"
+                    <div id="collapse3" class="collapse show" aria-labelledby="headingThree"
                         data-parent="#accordionExample">
-                        <div class="card-body">
-
+                        <div class="">
+                            <div class="table-responsive">
+                                <table class="table ">
+                                    <tbody>
+                                        <tr>
+                                          <td>Lun 10</td>
+                                          <td>12:00</td>
+                                          <td>Mantención</td>
+                                          <td>
+                                            <a class="btn btn-sm btn-warning " href="terminar">Terminar</a>
+                                          </td>
+                                      </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -316,11 +316,11 @@
         </div>
     </div>
     {{-- boton registro --}}
-    <div class="float-right">
+    {{-- <div class="float-right">
       <a href="{{ route('actividades.create') }}" class="btn btn-primary btn-sm"  data-placement="left">
         {{ __('Create New') }}
       </a>
-    </div>
+    </div> --}}
 </div>
 
 
