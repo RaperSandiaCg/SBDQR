@@ -21,6 +21,10 @@ Route::get('/vista', function () {
     return view('list-registro');
 });
 
+Route::get('/termianar', function () {
+    return view('finalizar');
+});
+
 Route::resource('actividades', App\Http\Controllers\ActividadeController::class);
 Route::resource('areas', App\Http\Controllers\AreaController::class);
 Route::resource('empresas', App\Http\Controllers\EmpresaController::class);

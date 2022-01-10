@@ -11,6 +11,14 @@ use Illuminate\Http\Request;
  */
 class ActividadeController extends Controller
 {
+
+    public function terminar()
+    {
+        $actividades = Actividade::paginate();
+
+        return view('actividade.terminar', compact('actividades'))
+            ->with('i', (request()->input('page', 1) - 1) * $actividades->perPage());
+    }
     /**
      * Display a listing of the resource.
      *
@@ -23,6 +31,8 @@ class ActividadeController extends Controller
         return view('actividade.index', compact('actividades'))
             ->with('i', (request()->input('page', 1) - 1) * $actividades->perPage());
     }
+
+    
 
     /**
      * Show the form for creating a new resource.

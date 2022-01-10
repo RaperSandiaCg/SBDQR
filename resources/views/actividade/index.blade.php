@@ -252,9 +252,7 @@
                                           <td>20:00</td>
                                           <td>Mantención Motor</td>
                                           <td>
-                                              <form action="" method="POST">
-                                                  <a class="btn btn-sm btn-warning " href="">Terminar</a>
-                                              </form>
+                                            <a class="btn btn-sm btn-warning " href="{{ route('termianar') }}">Terminar</a>
                                           </td>
                                       </tr>
                                     </tbody>
