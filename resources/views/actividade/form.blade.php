@@ -117,7 +117,7 @@
             <a href="{{ route('actividades.index') }}" class="btn btn-primary btn-sm"  data-placement="left">
               {{ __('Agregar Registro') }}
             </a>
-          </div>
+        </div>
 
         {{-- <div class="card-footer">
           <button href="{{ route('actividades.index') }}" type="submit" class="btn btn-primary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Agregar Registro</font></font></button>
