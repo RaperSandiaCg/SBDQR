@@ -47,7 +47,7 @@ class PuntosBloqueoController extends Controller
 
         $puntosBloqueo = PuntosBloqueo::create($request->all());
 
-        return redirect()->route('puntos-bloqueos.index')
+        return redirect()->route('puntosbloqueos.index')
             ->with('success', 'PuntosBloqueo created successfully.');
     }
 
@@ -61,7 +61,7 @@ class PuntosBloqueoController extends Controller
     {
         $puntosBloqueo = PuntosBloqueo::find($id);
 
-        return view('puntos-bloqueo.show', compact('puntosBloqueo'));
+        return view('puntosbloqueos.show', compact('puntosBloqueo'));
     }
 
     /**
@@ -74,7 +74,7 @@ class PuntosBloqueoController extends Controller
     {
         $puntosBloqueo = PuntosBloqueo::find($id);
 
-        return view('puntos-bloqueo.edit', compact('puntosBloqueo'));
+        return view('puntosbloqueos.edit', compact('puntosBloqueo'));
     }
 
     /**
@@ -90,7 +90,7 @@ class PuntosBloqueoController extends Controller
 
         $puntosBloqueo->update($request->all());
 
-        return redirect()->route('puntos-bloqueos.index')
+        return redirect()->route('puntosbloqueos.index')
             ->with('success', 'PuntosBloqueo updated successfully');
     }
 
@@ -103,7 +103,7 @@ class PuntosBloqueoController extends Controller
     {
         $puntosBloqueo = PuntosBloqueo::find($id)->delete();
 
-        return redirect()->route('puntos-bloqueos.index')
+        return redirect()->route('puntosbloqueos.index')
             ->with('success', 'PuntosBloqueo deleted successfully');
     }
 }

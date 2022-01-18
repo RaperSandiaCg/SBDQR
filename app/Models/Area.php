@@ -40,6 +40,14 @@ class Area extends Model
     {
         return $this->hasMany('App\Models\AreasEquipo', 'area_id', 'id');
     }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function Equipos()
+    {
+        return $this->BelongsToMaby('App\Models\Equipo');
+    }
+    
     
 
 }

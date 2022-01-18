@@ -17,16 +17,30 @@ class CreateActividadesTable extends Migration
             $table->id();
 
             $table->string('nombre', 50);
+
             $table->timestamp('fecha_inicio');
             $table->timestamp('fecha_termino')->nullable();
+
+            $table->string('encargado', 50)->nullable();
+            $table->string('auditor', 50)->nullable();
+            $table->string('energia_0', 50)->nullable();
+
+            $table->string('dep_mecanico', 100)->nullable();
+            $table->string('dep_electrico', 100)->nullable();
+            $table->string('dep_operaciones', 100)->nullable();
+
+            $table->string('prueba_energia_m', 100)->nullable();
+            $table->string('prueba_energia_e', 100)->nullable();
+            $table->string('prueba_energia_o', 100)->nullable();
+
             $table->string('estado', 50)->nullable();
 
-
-
             $table->unsignedBigInteger('equipo_id');
+            $table->unsignedBigInteger('user_id');
 
             $table->foreign('equipo_id')->references('id')->on('equipos')->onDelete('cascade')->onUpdate('cascade');
-            
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+
             $table->timestamps();
         });
     }

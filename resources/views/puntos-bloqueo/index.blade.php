@@ -18,7 +18,7 @@
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('puntos-bloqueos.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                <a href="{{ route('puntosbloqueos.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Create New') }}
                                 </a>
                               </div>
@@ -54,9 +54,9 @@
 											<td>{{ $puntosBloqueo->equipo_id }}</td>
 
                                             <td>
-                                                <form action="{{ route('puntos-bloqueos.destroy',$puntosBloqueo->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('puntos-bloqueos.show',$puntosBloqueo->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('puntos-bloqueos.edit',$puntosBloqueo->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                                <form action="{{ route('puntosbloqueos.destroy',$puntosBloqueo->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('puntosbloqueos.show',$puntosBloqueo->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('puntosbloqueos.edit',$puntosBloqueo->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Actividade;
+use App\Models\Equipo;
+
 use Illuminate\Http\Request;
 
 /**
@@ -11,6 +13,10 @@ use Illuminate\Http\Request;
  */
 class ActividadeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', ['only' => ['create']]);
+    }
 
     public function terminar()
     {
@@ -32,8 +38,6 @@ class ActividadeController extends Controller
             ->with('i', (request()->input('page', 1) - 1) * $actividades->perPage());
     }
 
-    
-
     /**
      * Show the form for creating a new resource.
      *
@@ -41,8 +45,14 @@ class ActividadeController extends Controller
      */
     public function create()
     {
+
         $actividade = new Actividade();
-        return view('actividade.create', compact('actividade'));
+        $equipos =  Equipo::pluck('nombre', 'id');
+        $nombreUsuario = auth()->user()->name.' '.auth()->user()->apellido;
+
+        $dt = Carbon::now();
+
+        return view('actividade.create', compact('actividade','equipos','nombreUsuario','dt'));
     }
 
     /**
@@ -51,12 +61,37 @@ class ActividadeController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
-        request()->validate(Actividade::$rules);
 
-        $actividade = Actividade::create($request->all());
+        // request()->validate(Actividade::$rules);
 
+        // return response()->json($array);
+        $actividade = Actividade::create([
+
+            'equipo_id' => $request->equipo_id, 
+            'user_id' => '1',
+
+            'nombre' => $request->nombre,
+            'fecha_inicio' => date('Y-m-d H:i:s', strtotime("$request->fecha_inicio $request->hora_inicio")),
+            'encargado' => $request->encargado,
+            'auditor' => $request->auditor,
+            'estado' => 'estado',
+
+            'dep_mecanico' => $request->dep_mecanico,
+            'dep_electrico' => $request->dep_electrico,
+            'dep_operaciones' => $request->dep_operaciones,
+
+            // 'prueba_energia_m' => $request->prueba_energia_m,
+            // 'prueba_energia_e' => $request->prueba_energia_e,
+            // 'prueba_energia_o' => $request->prueba_energia_o,
+
+            
+
+          ]);
+
+        // dd($actividade->all());
         return redirect()->route('actividades.index')
             ->with('success', 'Actividade created successfully.');
     }
@@ -109,6 +144,7 @@ class ActividadeController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
+    
     public function destroy($id)
     {
         $actividade = Actividade::find($id)->delete();

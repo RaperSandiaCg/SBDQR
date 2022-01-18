@@ -52,6 +52,14 @@ class Equipo extends Model
     {
         return $this->hasMany('App\Models\AreasEquipo', 'equipo_id', 'id');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function areas()
+    {
+        return $this->BelongsToMaby('App\Models\Area');
+    }
     
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

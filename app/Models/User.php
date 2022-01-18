@@ -26,8 +26,9 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'rut', 'apellido', 'tipo', 'cargo',
     ];
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -58,4 +59,6 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+
 }

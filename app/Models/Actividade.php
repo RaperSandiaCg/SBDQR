@@ -11,6 +11,12 @@ use Illuminate\Database\Eloquent\Model;
  * @property $nombre
  * @property $fecha_inicio
  * @property $fecha_termino
+ * @property $encargado
+ * @property $auditor
+ * @property $energia_0
+ * @property $dep_mecanico
+ * @property $dep_electrico
+ * @property $dep_operaciones
  * @property $estado
  * @property $equipo_id
  * @property $created_at
@@ -37,7 +43,27 @@ class Actividade extends Model
      *
      * @var array
      */
-    protected $fillable = ['nombre','fecha_inicio','fecha_termino','estado','equipo_id'];
+    protected $fillable = [
+        'equipo_id',
+        'user_id',
+
+        'nombre',
+        'fecha_inicio',
+        'fecha_termino',
+        'encargado',
+        'auditor',
+
+        'dep_mecanico',
+        'dep_electrico',
+        'dep_operaciones',
+
+        'estado',
+
+        'prueba_energia_e',
+        'prueba_energia_m',
+        'prueba_energia_o',
+
+    ];
 
 
     /**

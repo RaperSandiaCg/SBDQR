@@ -21,7 +21,7 @@ class EquipoController extends Controller
         $equipos = Equipo::paginate();
 
         return view('equipo.index', compact('equipos'))
-            ->with('i', (request()->input('page', 1) - 1) * $equipos->perPage());
+        ->with('i', (request()->input('page', 1) - 1) * $equipos->perPage());
     }
 
     /**
@@ -44,11 +44,12 @@ class EquipoController extends Controller
     public function store(Request $request)
     {
         request()->validate(Equipo::$rules);
+        return response()->json($request);
 
         $equipo = Equipo::create($request->all());
 
         return redirect()->route('equipos.index')
-            ->with('success', 'Equipo created successfully.');
+        ->with('success', 'Equipo created successfully.');
     }
 
     /**

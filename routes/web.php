@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use Carbon\Carbon;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,7 +13,7 @@ use Carbon\Carbon;
 |
 */
 
-Route::get('/', function () { 
+Route::get('/', function () {
     return view('welcome');
 });
 
@@ -38,10 +37,9 @@ Route::resource('actividades', App\Http\Controllers\ActividadeController::class)
 Route::resource('areas', App\Http\Controllers\AreaController::class);
 Route::resource('empresas', App\Http\Controllers\EmpresaController::class);
 Route::resource('equipos', App\Http\Controllers\EquipoController::class);
-Route::resource('puntosbloqueo', App\Http\Controllers\PuntosBloqueoController::class);
+Route::resource('puntosbloqueos', App\Http\Controllers\PuntosBloqueoController::class);
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
-
+    return view('/dashboard');
+})->name('/dashboard');

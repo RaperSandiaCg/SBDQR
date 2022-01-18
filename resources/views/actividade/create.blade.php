@@ -6,21 +6,21 @@
 
 @section('content')
     <section class="content container-fluid">
-        <div class="row">
-            <div class="col-md-12">
+        <div class="row justify-content-center">
+            <div class="col-md-6 pt-3">
 
                 @includeif('partials.errors')
 
-                <form method="POST" action="{{ route('actividades.store') }}"  role="form" enctype="multipart/form-data">
+                {{-- <form method="POST" action="{{ route('actividades.store') }}"  role="form" enctype="multipart/form-data">
                     @csrf
 
                     @include('actividade.form')
 
-                </form>
+                </form> --}}
 
-                {{-- <div class="card card-default">
+                <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">Create Actividade</span>
+                        <span class="card-title">Ingresar Actividadad</span>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('actividades.store') }}"  role="form" enctype="multipart/form-data">
@@ -30,7 +30,7 @@
 
                         </form>
                     </div>
-                </div> --}}
+                </div>
             </div>
         </div>
     </section>

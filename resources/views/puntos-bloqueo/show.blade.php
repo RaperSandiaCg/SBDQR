@@ -15,7 +15,7 @@
                             <span class="card-title">Show Puntos Bloqueo</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('puntos-bloqueos.index') }}"> Back</a>
+                            <a class="btn btn-primary" href="{{ route('puntosbloqueos.index') }}"> Back</a>
                         </div>
                     </div>
 
