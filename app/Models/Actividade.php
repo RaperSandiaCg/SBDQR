@@ -63,6 +63,8 @@ class Actividade extends Model
         'prueba_energia_m',
         'prueba_energia_o',
 
+        
+
     ];
 
 

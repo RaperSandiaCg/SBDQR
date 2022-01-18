@@ -9,11 +9,11 @@
       </div>
       <div class="form-group col-6">
         <label for="hora_inicio">Hora de inicio</label>
-        <input type="time" id="hora_inicio" name="hora_inicio" class="form-control" value="">
+        <input type="time" id="hora_inicio" name="hora_inicio" class="form-control" value="{{ $dt->toTimeString() }}">
       </div>
       <div class="form-group col-md-12">
         <label for="encargado">Encargado</label>
-        <input type="text" id="encargado" name="encargado" class="form-control" value="{{ $nombreUsuario}}" >
+        <input type="text" id="encargado" name="encargado" class="form-control" value="{{$nombreUsuario}}" disabled>
       </div>
       <div class="form-group col-md-12">
         <label for="nombre">Actividad</label>
@@ -21,7 +21,7 @@
       </div>
       <div class="form-group col-md-12">
         <label for="equipo_id">Equipo</label>
-        <input type="text" name="equipo_id" class="form-control" required="">
+        <input type="text" name="equipo_id" class="form-control" required="" disabled value="{{$equipo}}">
       </div>
 
       <div class="form-group col-md-12">

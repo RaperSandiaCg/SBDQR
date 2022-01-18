@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ActividadeController;
+
 use Carbon\Carbon;
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +36,10 @@ Route::get('/vista2', function () {
 });
 
 Route::resource('actividades', App\Http\Controllers\ActividadeController::class);
+
+Route::get('area/{area_id}
+', [ActividadeController::class, 'index']);
+
 Route::resource('areas', App\Http\Controllers\AreaController::class);
 Route::resource('empresas', App\Http\Controllers\EmpresaController::class);
 Route::resource('equipos', App\Http\Controllers\EquipoController::class);

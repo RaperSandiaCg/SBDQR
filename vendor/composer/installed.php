@@ -20,12 +20,12 @@
             'dev_requirement' => false,
         ),
         'asm89/stack-cors' => array(
-            'pretty_version' => 'v2.0.5',
-            'version' => '2.0.5.0',
+            'pretty_version' => 'v2.1.1',
+            'version' => '2.1.1.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../asm89/stack-cors',
             'aliases' => array(),
-            'reference' => '7a198ec737e926eab15d29368fc6fff66772b0e2',
+            'reference' => '73e5b88775c64ccc0b84fb60836b30dc9d92ac4a',
             'dev_requirement' => false,
         ),
         'bacon/bacon-qr-code' => array(

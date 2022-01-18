@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Actividade;
 use App\Models\Equipo;
+use Carbon\Carbon;
 
 use Illuminate\Http\Request;
 
@@ -30,9 +31,11 @@ class ActividadeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Actividade $area_id)
     {
+
         $actividades = Actividade::paginate();
+        // return view('actividade.index', ['area' => $area_id]);
 
         return view('actividade.index', compact('actividades'))
             ->with('i', (request()->input('page', 1) - 1) * $actividades->perPage());
@@ -43,16 +46,15 @@ class ActividadeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Actividade $actividade, Equipo $equipo)
     {
 
-        $actividade = new Actividade();
-        $equipos =  Equipo::pluck('nombre', 'id');
+        // $actividade = new Actividade();
         $nombreUsuario = auth()->user()->name.' '.auth()->user()->apellido;
 
         $dt = Carbon::now();
 
-        return view('actividade.create', compact('actividade','equipos','nombreUsuario','dt'));
+        return view('actividade.create', compact('actividade','equipo','nombreUsuario','dt'));
     }
 
     /**
@@ -71,7 +73,7 @@ class ActividadeController extends Controller
         $actividade = Actividade::create([
 
             'equipo_id' => $request->equipo_id, 
-            'user_id' => '1',
+            'user_id' => auth()->user()->id,
 
             'nombre' => $request->nombre,
             'fecha_inicio' => date('Y-m-d H:i:s', strtotime("$request->fecha_inicio $request->hora_inicio")),
@@ -83,11 +85,12 @@ class ActividadeController extends Controller
             'dep_electrico' => $request->dep_electrico,
             'dep_operaciones' => $request->dep_operaciones,
 
+            
             // 'prueba_energia_m' => $request->prueba_energia_m,
             // 'prueba_energia_e' => $request->prueba_energia_e,
             // 'prueba_energia_o' => $request->prueba_energia_o,
 
-            
+        
 
           ]);
 
@@ -133,8 +136,31 @@ class ActividadeController extends Controller
     {
         request()->validate(Actividade::$rules);
 
-        $actividade->update($request->all());
+        // $actividade->update($request->all());
+        $actividade->update([
 
+            'equipo_id' => $request->equipo_id, 
+            'user_id' => '1',
+
+            'nombre' => $request->nombre,
+            'fecha_inicio' => date('Y-m-d H:i:s', strtotime("$request->fecha_inicio $request->hora_inicio")),
+            'encargado' => $request->encargado,
+            'auditor' => $request->auditor,
+            'estado' => 'estado',
+
+            'dep_mecanico' => $request->dep_mecanico,
+            'dep_electrico' => $request->dep_electrico,
+            'dep_operaciones' => $request->dep_operaciones,
+
+            
+
+            // 'prueba_energia_m' => $request->prueba_energia_m,
+            // 'prueba_energia_e' => $request->prueba_energia_e,
+            // 'prueba_energia_o' => $request->prueba_energia_o,
+
+        
+
+          ]);
         return redirect()->route('actividades.index')
             ->with('success', 'Actividade updated successfully');
     }
