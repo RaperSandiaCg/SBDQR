@@ -40,7 +40,7 @@ class ActividadeController extends Controller
 
         $area = Area::where('nombre', $area_nombre)->first();
         $equipo = Equipo::where('nombre', $equipo_nombre)->first();
-        return response()->json($equipo);
+        // return response()->json($equipo);
 
         $actividades = Actividade::where('equipo_id', $equipo->id)->paginate();
 

@@ -37,7 +37,7 @@ Route::get('/vista2', function () {
 
 
 
-// Route::get('{area_id}/{equipo_id}', [ActividadeController::class, 'index']);
+Route::get('{area_id}/{equipo_id}', [ActividadeController::class, 'index']);
 // Route::post('actividade/create', [ActividadeController::class, 'create']);
 
 Route::resource('actividades', App\Http\Controllers\ActividadeController::class);
