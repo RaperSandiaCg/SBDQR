@@ -86,3 +86,8 @@ class Actividade extends Model
     
 
 }
+
+class ActivityStatus{
+    const Generado = 'Generado';
+    const Terminado = 'Terminado';
+}

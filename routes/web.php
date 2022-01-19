@@ -35,11 +35,12 @@ Route::get('/vista2', function () {
     return view('verRegistro');
 });
 
+
+
+// Route::get('{area_id}/{equipo_id}', [ActividadeController::class, 'index']);
+// Route::post('actividade/create', [ActividadeController::class, 'create']);
+
 Route::resource('actividades', App\Http\Controllers\ActividadeController::class);
-
-Route::get('area/{area_id}
-', [ActividadeController::class, 'index']);
-
 Route::resource('areas', App\Http\Controllers\AreaController::class);
 Route::resource('empresas', App\Http\Controllers\EmpresaController::class);
 Route::resource('equipos', App\Http\Controllers\EquipoController::class);

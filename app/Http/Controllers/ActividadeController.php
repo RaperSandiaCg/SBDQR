@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Actividade;
 use App\Models\Equipo;
+use App\Models\Area;
+
 use Carbon\Carbon;
 
 use Illuminate\Http\Request;
@@ -31,14 +33,28 @@ class ActividadeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Actividade $area_id)
+    public function index($area_nombre,$equipo_nombre)
     {
 
-        $actividades = Actividade::paginate();
-        // return view('actividade.index', ['area' => $area_id]);
+        $start = $this->getMesesSemanas();
 
-        return view('actividade.index', compact('actividades'))
+        $area = Area::where('nombre', $area_nombre)->first();
+        $equipo = Equipo::where('nombre', $equipo_nombre)->first();
+        return response()->json($equipo);
+
+        $actividades = Actividade::where('equipo_id', $equipo->id)->paginate();
+
+        if($area != null && $equipo != null){
+
+            session(['area' => $area]);
+            session(['equipo' => $equipo]);
+            return view('actividade.index', compact('actividades','area','equipo','start'))
             ->with('i', (request()->input('page', 1) - 1) * $actividades->perPage());
+        }
+        else
+        {
+            return view('welcome');
+        }
     }
 
     /**
@@ -46,15 +62,16 @@ class ActividadeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Actividade $actividade, Equipo $equipo)
+    public function create(Request $request)
     {
+        // return response()->json($request->all());
 
         // $actividade = new Actividade();
+        $equipo = $equipo_id;
         $nombreUsuario = auth()->user()->name.' '.auth()->user()->apellido;
-
         $dt = Carbon::now();
 
-        return view('actividade.create', compact('actividade','equipo','nombreUsuario','dt'));
+        return view('actividade.create', compact('equipo','nombreUsuario','dt'));
     }
 
     /**
@@ -79,7 +96,7 @@ class ActividadeController extends Controller
             'fecha_inicio' => date('Y-m-d H:i:s', strtotime("$request->fecha_inicio $request->hora_inicio")),
             'encargado' => $request->encargado,
             'auditor' => $request->auditor,
-            'estado' => 'estado',
+            'estado' => ActivitySatatus::Generado,
 
             'dep_mecanico' => $request->dep_mecanico,
             'dep_electrico' => $request->dep_electrico,
@@ -177,5 +194,117 @@ class ActividadeController extends Controller
 
         return redirect()->route('actividades.index')
             ->with('success', 'Actividade deleted successfully');
+    }
+
+    function getMesesSemanas(){
+        $fecha = Carbon::now();
+        $month = $fecha->month;
+        $year = $fecha->year;
+        $meses = array();
+
+        $cont = 0;
+        while($cont <= 1){              
+            $fechaMoment = $fecha;                
+            switch($fechaMoment->month){
+                case 1;
+                    $fechatem = Carbon::createFromDate($fechaMoment->year,$fechaMoment->month);
+                    array_push($meses, $fechatem);
+                    $fechaMoment->month = $fechaMoment->subMonth()->format('m');                     
+                    break;
+                case 2;                
+                    $fechatem = Carbon::createFromDate($fechaMoment->year,$fechaMoment->month);
+                    array_push($meses, $fechatem);
+                    $fechaMoment->month = $fechaMoment->subMonth()->format('m');                
+                    break;
+                case 3;                
+                    $fechatem = Carbon::createFromDate($fechaMoment->year,$fechaMoment->month);
+                    array_push($meses, $fechatem);
+                    $fechaMoment->month = $fechaMoment->subMonth()->format('m');                
+                    break;
+                case 4;                
+                    $fechatem = Carbon::createFromDate($fechaMoment->year,$fechaMoment->month);
+                    array_push($meses, $fechatem);
+                    $fechaMoment->month = $fechaMoment->subMonth()->format('m');                
+                    break;
+                case 5;                
+                    $fechatem = Carbon::createFromDate($fechaMoment->year,$fechaMoment->month);
+                    array_push($meses, $fechatem);
+                    $fechaMoment->month = $fechaMoment->subMonth()->format('m');                
+                    break;
+                case 6;                
+                    $fechatem = Carbon::createFromDate($fechaMoment->year,$fechaMoment->month);
+                    array_push($meses, $fechatem);
+                    $fechaMoment->month = $fechaMoment->subMonth()->format('m');                
+                    break;
+                case 7;                
+                    $fechatem = Carbon::createFromDate($fechaMoment->year,$fechaMoment->month);
+                    array_push($meses, $fechatem);
+                    $fechaMoment->month = $fechaMoment->subMonth()->format('m');                
+                    break;
+                case 8;                
+                    $fechatem = Carbon::createFromDate($fechaMoment->year,$fechaMoment->month);
+                    array_push($meses, $fechatem);
+                    $fechaMoment->month = $fechaMoment->subMonth()->format('m');                
+                    break;
+                case 9;                
+                    $fechatem = Carbon::createFromDate($fechaMoment->year,$fechaMoment->month);
+                    array_push($meses, $fechatem);
+                    $fechaMoment->month = $fechaMoment->subMonth()->format('m');                
+                    break;
+                case 10;                
+                    $fechatem = Carbon::createFromDate($fechaMoment->year,$fechaMoment->month);
+                    array_push($meses, $fechatem);
+                    $fechaMoment->month = $fechaMoment->subMonth()->format('m');                
+                    break;
+                case 11;                
+                    $fechatem = Carbon::createFromDate($fechaMoment->year,$fechaMoment->month);
+                    array_push($meses, $fechatem);
+                    $fechaMoment->month = $fechaMoment->subMonth()->format('m');                
+                    break;
+                case 12;
+                    $fechatem = Carbon::createFromDate($fechaMoment->year,$fechaMoment->month);
+                    array_push($meses, $fechatem);
+                    $fechaMoment->month = $fechaMoment->subMonth()->format('m');                          
+                    break;
+            }
+            $cont = $cont + 1;
+        }
+        $mesRepit = 0;
+
+
+        $start = array();
+
+        for ($j=1; $j <= count($meses) ; $j++) {
+            $fechas = array();
+            $mes =array();
+            $date = Carbon::createFromDate($meses[$j-1]->year,$meses[$j-1]->month);
+            $l=0;
+            
+            
+            for ($i=1; $i <= $date->daysInMonth ; $i+=7) {
+                $rangos =array();
+                $inicio = Carbon::createFromDate($date->year,$date->month,$i)->startOfWeek();
+                $termino = Carbon::createFromDate($date->year,$date->month,$i)->endOfweek();
+                $rangos["inicio"] = $inicio;
+                $rangos["termino"] = $termino;
+                // $mes[$l.'° semana'] = $inicio->toDateString().' - '.$termino->toDateString().' '.$inicio->weekOfYear; 
+                $mes[$l]=$rangos; 
+                $l++;              
+            }    
+            $fechas[0]=$date->formatLocalized('%B');
+            $fechas[1]=$mes;
+            // $start[$date->formatLocalized('%Y').' mes '.$date->formatLocalized('%B')]= $mes;
+            $start[$mesRepit]= $fechas;
+            // $start[$mesRepit]= $mes;
+            // $start[$date->formatLocalized('%B')]= $mes;
+            $mesRepit++;
+            unset($mes);
+            $mes = array();
+        }
+        
+        // $result = array_merge($start);
+        $cont = 1;
+        return $start;
+
     }
 }
