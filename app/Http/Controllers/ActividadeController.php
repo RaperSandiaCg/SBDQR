@@ -42,12 +42,13 @@ class ActividadeController extends Controller
         $equipo = Equipo::where('nombre', $equipo_nombre)->first();
         // return response()->json($equipo);
 
-        $actividades = Actividade::where('equipo_id', $equipo->id)->paginate();
 
         if($area != null && $equipo != null){
 
             session(['area' => $area]);
             session(['equipo' => $equipo]);
+
+            $actividades = Actividade::where('equipo_id', $equipo->id)->paginate();
             return view('actividade.index', compact('actividades','area','equipo','start'))
             ->with('i', (request()->input('page', 1) - 1) * $actividades->perPage());
         }
@@ -62,16 +63,14 @@ class ActividadeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
-        // return response()->json($request->all());
 
-        // $actividade = new Actividade();
-        $equipo = $equipo_id;
+        // $equipo = $equipo_id;
         $nombreUsuario = auth()->user()->name.' '.auth()->user()->apellido;
         $dt = Carbon::now();
 
-        return view('actividade.create', compact('equipo','nombreUsuario','dt'));
+        return view('actividade.create', compact('nombreUsuario','dt'));
     }
 
     /**
@@ -96,7 +95,7 @@ class ActividadeController extends Controller
             'fecha_inicio' => date('Y-m-d H:i:s', strtotime("$request->fecha_inicio $request->hora_inicio")),
             'encargado' => $request->encargado,
             'auditor' => $request->auditor,
-            'estado' => ActivitySatatus::Generado,
+            'estado' => 'generado',
 
             'dep_mecanico' => $request->dep_mecanico,
             'dep_electrico' => $request->dep_electrico,
@@ -112,8 +111,14 @@ class ActividadeController extends Controller
           ]);
 
         // dd($actividade->all());
-        return redirect()->route('actividades.index')
-            ->with('success', 'Actividade created successfully.');
+        return redirect()->action(
+            [ActividadeController::class, 'index'], ['area_id'=>'area1','equipo_id'=>'molino']
+        )->with('success', 'Actividade created successfully.');
+
+        
+        // return \Redirect::route('actividades.index', ['area_nombre'=>'area1','equipo_nombre'=>'molino'])->with('success', 'Actividade created successfully.');
+        // return redirect()->route('actividades.index')
+        //     ->with('success', 'Actividade created successfully.');
     }
 
     /**

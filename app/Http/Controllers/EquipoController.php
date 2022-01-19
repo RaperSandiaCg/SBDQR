@@ -44,7 +44,7 @@ class EquipoController extends Controller
     public function store(Request $request)
     {
         request()->validate(Equipo::$rules);
-        return response()->json($request);
+        // return response()->json($request);
 
         $equipo = Equipo::create($request->all());
 

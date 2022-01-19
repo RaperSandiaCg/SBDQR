@@ -21,7 +21,7 @@
       </div>
       <div class="form-group col-md-12">
         <label for="equipo_id">Equipo</label>
-        <input type="text" name="equipo_id" class="form-control" required="" disabled value="{{$equipo}}">
+        <input type="text" name="equipo_id" class="form-control" required=""  value="">
       </div>
 
       <div class="form-group col-md-12">
