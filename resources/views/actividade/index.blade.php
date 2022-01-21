@@ -88,7 +88,7 @@
         <div class="info-box bg-light">
             <div class="info-box-content">
                 <span class="info-box-text text-center text-muted">Área</span>
-                <span class="info-box-text text-center text-muted mb-0">Cal</span>
+                <span class="info-box-text text-center text-muted mb-0">{{$area->nombre}}</span>
             </div>
         </div>
     </div>
@@ -96,7 +96,7 @@
         <div class="info-box bg-light">
             <div class="info-box-content">
                 <span class="info-box-text text-center text-muted">Equipo</span>
-                <span class="info-box-text text-center text-muted mb-0">Equipo 1</span>
+                <span class="info-box-text text-center text-muted mb-0">{{$equipo->nombre}}</span>
             </div>
         </div>
     </div>
@@ -110,16 +110,17 @@
     {{-- Mes --}}   
     @php
     $cont = 1;
+    use Carbon\Carbon;
     @endphp 
     @foreach($start as $str)        
-        <div class="card card-default ">
+        <div class="card card-default collapsed-card">
             <div class="card-header">
                 <h3 class="card-title">{{$str[0]}}</h3>
                 <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                            class="fas fa-minus"></i></button>
-                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i
-                            class="fas fa-remove"></i></button>
+                    <button type="button" class="btn btn-tool" onclick="" data-card-widget="collapse"><i
+                            class="fas fa-plus"></i></button>
+                    {{-- <button type="button" class="btn btn-tool" data-card-widget="remove"><i
+                            class="fas fa-remove"></i></button> --}}
                 </div>
             </div>
 
@@ -131,132 +132,66 @@
                             <h2 class="mb-0">
                                 <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
                                     data-target="{{'#collapse'.$cont}}" aria-expanded="true" aria-controls="{{'collapse'.$cont}}">
-                                    {{'Del '.$rango['inicio']->formatLocalized('%d %B %Y').'  al  '.$rango['termino']->formatLocalized('%d %B %Y')}}
+                                    {{'Del '.$rango['inicio']->formatLocalized('%d').'  al  '.$rango['termino']->formatLocalized('%d')}}
                                 </button>
                             </h2>
                         </div>
 
                         <div id="{{'collapse'.$cont}}" class="collapse" aria-labelledby="headingOne"
                             data-parent="#accordionExample">
-                            <div class="card-body">
-
-                            </div>
-                        </div>
+                            @if(count($rango['actv']) == 0)
+                                <div class="card-body">
+                                    <p >No hay registros en esta semana</p>
+                                </div>
+                            
+                            @else
+                                <div class="contTabla">
+                                    <div class="table-responsive contTabla">
+                                        <table class="table ttable">
+                                            <tbody>
+                                                @foreach($rango['actv'] as $actividad)
+                                                <tr>
+                                                    @php
+                                                    $dateAct = date_parse($actividad->fecha_inicio);
+                                                    $dateAct2 = Carbon::createFromDate($dateAct["year"],$dateAct["month"],$dateAct["day"]);
+                                                    $dia = $dateAct2->format('l');
+                                                    $hora = $dateAct["hour"].' : '.$dateAct["minute"];
+                                                    @endphp
+                                                    <td>{{$dia.' '.$dateAct2->formatLocalized('%d')}}</td>
+                                                    <td>{{$hora.' '.$dateAct2->format('a')}}</td>
+                                                    <td>{{$actividad->nombre}}</td>
+                                                    <td>
+                                                        @if($actividad->estado == "generado")
+                                                        <a class="btn btn-sm btn-warning botonTab" href=""><i class="fa fa-clock-o conico"></i> Terminar</a>
+                                                        {{-- @elseif($actividad->estado == "terminado")  --}}
+                                                        @else                                                    
+                                                        <a class="btn btn-sm btn-primary botonTab" href=""><i class="fa fa-fw fa-eye conico"></i> ver</a>
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            @endif                            
+                        </div>  
                     </div>
                     @php
                     $cont++
                     @endphp
                     @endforeach
                 </div>
-            </div>
+            </div>            
         </div>
+        
     @endforeach
-
-    {{-- <div class="card card-default ">
-        <div class="card-header">
-            <h3 class="card-title">Enero</h3>
-            <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                        class="fas fa-minus"></i></button>
-                <button type="button" class="btn btn-tool" data-card-widget="remove"><i
-                        class="fas fa-remove"></i></button>
-            </div>
-        </div>
-
-        <div class="card-body">
-
-            <div class="accordion" id="accordionExample">
-                <div class="card">
-                    <div class="card-header " id="headingOne">
-                        <h2 class="mb-0">
-                            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
-                                data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
-                                Del 27 al 2 de Enero
-                            </button>
-                        </h2>
-                    </div>
-
-                    <div id="collapse1" class="collapse " aria-labelledby="headingOne"
-                        data-parent="#accordionExample">
-                        <div class="">
-
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header" id="headingTwo">
-                        <h2 class="mb-0">
-                            <button class="btn btn-link btn-block text-left collapsed" type="button"
-                                data-toggle="collapse" data-target="#collapse2" aria-expanded="false"
-                                aria-controls="collapse2">
-                                Del 3 al 9 de Enero
-                            </button>
-                        </h2>
-                    </div>
-                    <div id="collapse2" class="collapse" aria-labelledby="headingTwo"
-                        data-parent="#accordionExample">
-                        <div class="card-body">
-
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header" id="headingThree">
-                        <h2 class="mb-0">
-                            <button class="btn btn-link btn-block text-left collapsed" type="button"
-                                data-toggle="collapse" data-target="#collapse3" aria-expanded="false"
-                                aria-controls="collapse3">
-                                Del 10 al 16 de Enero
-                            </button>
-                        </h2>
-                    </div>
-                    <div id="collapse3" class="collapse show" aria-labelledby="headingThree"
-                        data-parent="#accordionExample">
-                        <div class="">
-                            <div class="table-responsive">
-                                <table class="table ">
-                                    <tbody>
-                                        <tr>
-                                          <td>Lun 10</td>
-                                          <td>12:00</td>
-                                          <td>Mantención</td>
-                                          <td>
-                                            <a class="btn btn-sm btn-warning " href="terminar">Terminar</a>
-                                          </td>
-                                      </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header" id="headingThree">
-                        <h2 class="mb-0">
-                            <button class="btn btn-link btn-block text-left collapsed" type="button"
-                                data-toggle="collapse" data-target="#collapse4" aria-expanded="false"
-                                aria-controls="collapse4">
-                                Del 17 al 23 de Enero
-                            </button>
-                        </h2>
-                    </div>
-                    <div id="collapse4" class="collapse" aria-labelledby="headingFour"
-                        data-parent="#accordionExample">
-                        <div class="card-body">
-                        
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> --}}
-
-    {{-- boton registro --}}
-    {{-- <div class="float-right">
-      <a href="{{ route('actividades.create') }}" class="btn btn-primary btn-sm"  data-placement="left">
-        {{ __('Create New') }}
+    <div class="float-right">
+        {{-- <a href="{{ route([ActividadeController::class, 'create'], ['area_id'=>'area1','equipo_id'=>'molino']) }}"  class="btn btn-primary btn-sm"  data-placement="left"> --}}
+        <a href="{{ action('App\Http\Controllers\ActividadeController@create') }}" class="btn btn-primary btn-sm"  data-placement="left">
+        {{ __('Generar actividad') }}
       </a>
-    </div> --}}
+    </div>  
 </div>
 
 
@@ -265,6 +200,8 @@
 
 @section('css')
 <link rel="stylesheet" href="/css/admin_custom.css">
+<link rel="stylesheet" type="text/css" href="{{asset('css/estilos.css')}}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 @stop
 
 @section('js')
