@@ -88,7 +88,7 @@
         <div class="info-box bg-light">
             <div class="info-box-content">
                 <span class="info-box-text text-center text-muted">Área</span>
-                <span class="info-box-text text-center text-muted mb-0">{{$area->nombre}}</span>
+                <span class="info-box-text text-center text-muted mb-0">{{(json_decode(Session::get('area'))->nombre)}}</span>
             </div>
         </div>
     </div>
@@ -96,7 +96,7 @@
         <div class="info-box bg-light">
             <div class="info-box-content">
                 <span class="info-box-text text-center text-muted">Equipo</span>
-                <span class="info-box-text text-center text-muted mb-0">{{$equipo->nombre}}</span>
+                <span class="info-box-text text-center text-muted mb-0">{{(json_decode(Session::get('equipo'))->nombre)}}</span>
             </div>
         </div>
     </div>

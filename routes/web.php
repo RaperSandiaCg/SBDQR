@@ -15,9 +15,9 @@ use Carbon\Carbon;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/vista', function () {
     return view('list-registro');
@@ -38,6 +38,8 @@ Route::get('/vista2', function () {
 
 
 Route::get('area/{area_id}/equipo/{equipo_id}', [ActividadeController::class, 'index']);
+
+Route::get('/', [ActividadeController::class, 'welcome']);
 
 Route::resource('actividades', App\Http\Controllers\ActividadeController::class);
 Route::resource('areas', App\Http\Controllers\AreaController::class);

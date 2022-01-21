@@ -9,21 +9,20 @@
       </div>
       <div class="form-group col-6">
         <label for="hora_inicio">Hora de inicio</label>
-        <input type="time" id="hora_inicio" name="hora_inicio" class="form-control" value="{{ $dt->toTimeString() }}">
+        <input type="time" id="hora_inicio" name="hora_inicio" class="form-control" value="{{ $dt->format('H:i') }}">
       </div>
       <div class="form-group col-md-12">
         <label for="encargado">Encargado</label>
-        <input type="text" id="encargado" name="encargado" class="form-control" value="{{$nombreUsuario}}" disabled>
+        <input type="text" id="encargado" name="encargado" class="form-control" value="{{$nombreUsuario}}" >
       </div>
       <div class="form-group col-md-12">
         <label for="nombre">Actividad</label>
-        <input type="text" id="nombre" name="nombre" class="form-control" required="">
+        <input type="text" id="nombre" name="nombre" class="form-control" >
       </div>
       <div class="form-group col-md-12">
-        <label for="equipo_id">Equipo</label>
-        <input type="text" name="equipo_id" class="form-control" required=""  value="">
+        <label for="equipo">Equipo</label>
+        <input type="text" name="equipo" class="form-control"  value="{{(json_decode(Session::get('equipo'))->nombre)}}" ">
       </div>
-
       <div class="form-group col-md-12">
         <label for="dep_operaciones">Departamental Operaciones</label>
         <input type="text" name="dep_operaciones" class="form-control" >
@@ -35,8 +34,7 @@
       <div class="form-group col-md-12">
         <label for="dep_mecanico">Departamental Mecánico</label>
         <input type="text" name="dep_mecanico" class="form-control" >
-      </div>
-
+      {{-- </div>
       <div class="form-group col-md-12">
         <label for="prueba_energia_o">Departamental Operaciones</label>
         <input type="text" name="prueba_energia_o" class="form-control" >
@@ -48,7 +46,7 @@
       <div class="form-group col-md-12">
         <label for="prueba_energia_m">Departamental Mecánico</label>
         <input type="text" name="prueba_energia_m" class="form-control" >
-      </div>
+      </div> --}}
 
       <div class="form-group col-md-12">
         <label for="auditor">Auditor</label>
