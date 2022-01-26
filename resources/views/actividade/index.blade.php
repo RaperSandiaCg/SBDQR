@@ -154,11 +154,13 @@
                                                     @php
                                                     $dateAct = date_parse($actividad->fecha_inicio);
                                                     $dateAct2 = Carbon::createFromDate($dateAct["year"],$dateAct["month"],$dateAct["day"]);
+                                                    $dateAct2->hour = $dateAct["hour"];
+                                                    $dateAct2->minute = $dateAct["minute"];
                                                     $dia = $dateAct2->format('l');
-                                                    $hora = $dateAct["hour"].' : '.$dateAct["minute"];
+                                                    $hora = $dateAct2->format('H:i');
                                                     @endphp
-                                                    <td>{{$dia.' '.$dateAct2->formatLocalized('%d')}}</td>
-                                                    <td>{{$hora.' '.$dateAct2->format('a')}}</td>
+                                                    <td>{{$dateAct2->formatLocalized('%A %d')}}</td>
+                                                    <td>{{$hora}}</td>
                                                     <td>{{$actividad->nombre}}</td>
                                                     <td>
                                                         @if($actividad->estado == "generado")
