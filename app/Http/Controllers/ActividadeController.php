@@ -185,7 +185,7 @@ class ActividadeController extends Controller
     public function edit($id)
     {
         $actividad = Actividade::find($id);
-        $actividad->fecha_termino = Carbon::now();
+        $actividad->fecha_termino = Carbon::now()->setTimezone('America/Santiago');
 
         return view('actividade.edit', compact('actividad'));
     }
