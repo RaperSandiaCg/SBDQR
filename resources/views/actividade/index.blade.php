@@ -164,7 +164,7 @@
                                                     <td>{{$actividad->nombre}}</td>
                                                     <td>
                                                         @if($actividad->estado == "generado")
-                                                        <a class="btn btn-sm btn-warning botonTab" href=""><i class="fa fa-clock-o conico"></i> Terminar</a>
+                                                        <a class="btn btn-sm btn-warning botonTab" href="{{ route('actividades.edit',$actividad->id) }}"><i class="fa fa-clock-o conico"></i> Terminar</a>
                                                         {{-- @elseif($actividad->estado == "terminado")  --}}
                                                         @else                                                    
                                                         <a class="btn btn-sm btn-primary botonTab" href=""><i class="fa fa-fw fa-eye conico"></i> ver</a>

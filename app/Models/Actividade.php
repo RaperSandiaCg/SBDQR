@@ -83,6 +83,8 @@ class Actividade extends Model
     {
         return $this->hasMany('App\Models\UsersActividade', 'actividad_id', 'id');
     }
+
+
     
 
 }

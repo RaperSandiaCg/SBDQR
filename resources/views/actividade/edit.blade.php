@@ -1,13 +1,13 @@
 {{-- @extends('layouts.app') --}}
 @extends('adminlte::page')
 @section('template_title')
-    Update Actividade
+    Terminar Actividad
 @endsection
 
 @section('content')
     <section class="content container-fluid">
-        <div class="">
-            <div class="col-md-12">
+        <div class="row justify-content-center">
+            <div class="col-md-6 pt-3">
 
                 @includeif('partials.errors')
 
@@ -16,7 +16,7 @@
                         <span class="card-title">Update Actividade</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('actividades.update', $actividade->id) }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('actividades.update', $actividad->id) }}"  role="form" enctype="multipart/form-data">
                             {{ method_field('PATCH') }}
                             @csrf
 

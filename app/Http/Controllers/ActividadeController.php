@@ -53,8 +53,8 @@ class ActividadeController extends Controller
     {
 
 
-        if($request->area == null && $request->equipo == null){
-
+        //retorna con variables string
+        if($area_nombre != null && $equipo_nombre != null){
             $area = Area::where('nombre', $area_nombre)->first();
             $equipo = Equipo::where('nombre', $equipo_nombre)->first();
 
@@ -70,22 +70,28 @@ class ActividadeController extends Controller
             }
 
         }
-        else
+        //retorn con request
+        elseif ($request->area != null && $request->equipo != null)
         {
             session(['area' => $request->area]);
             session(['equipo' => $request->equipo]);
             $actividades = Actividade::where('equipo_id', (json_decode($request->equipo)->id))->paginate();
+        }
+        elseif ($request->session()->get('equipo') != null)
+        {
+            $test = json_decode($request->session()->get('equipo'));
+            $actividades = Actividade::where('equipo_id', $test->id)->paginate();
+        }
+        else{
+
+            return $this->welcome();
         }
         
         $start = $this->getMesesSemanas($actividades);
 
         return view('actividade.index', compact('actividades','start'))
         ->with('i', (request()->input('page', 1) - 1) * $actividades->perPage());
-        
-        // else
-        // {
-        //     return view('welcome');
-        // }
+
     }
 
     /**
@@ -95,15 +101,15 @@ class ActividadeController extends Controller
      */
     public function create(Request $request)
     {
-        //return response()->json($request);
+        $test = json_decode($request->session()->get('equipo'));
 
-        $area = Area::where('nombre', $request->area_nombre)->first();
-        $equipo = Equipo::where('nombre', $request->equipo_nombre)->first();
+        $actividad = new Actividade();
 
-        $nombreUsuario = auth()->user()->name.' '.auth()->user()->apellido;
-        $dt = Carbon::now();
+        $actividad->equipo = Equipo::where('nombre', $test->nombre)->first();
+        $actividad->fecha_inicio = Carbon::now();
+        $actividad->encargado = auth()->user()->name.' '.auth()->user()->apellido;
 
-        return view('actividade.create', compact('area','equipo','nombreUsuario','dt'));
+        return view('actividade.create', compact('actividad'));
     }
 
     /**
@@ -115,13 +121,14 @@ class ActividadeController extends Controller
 
     public function store(Request $request)
     {         
-        $equipo = Equipo::where('nombre', $request->equipo)->first();
-        // dd($equipo);
+        // $equipo = Equipo::where('nombre', $request->equipo)->first();
+        //  dd($request);
 
-        $actividade = Actividade::create([
+        Actividade::create($request->all());
+        $actividad = Actividade::create([
 
-            'equipo_id' => $equipo->id,
-            'user_id' => auth()->user()->id,
+            'equipo_id' => $request->equipo_id,
+            'user_id' => $request->user_id,
 
             'nombre' => $request->nombre,
             'fecha_inicio' => date('Y-m-d H:i:s', strtotime("$request->fecha_inicio $request->hora_inicio")),
@@ -138,14 +145,11 @@ class ActividadeController extends Controller
             // 'prueba_energia_o' => $request->prueba_energia_o,
         ]);
 
-        // dd($actividade->all());
-        // return redirect()->action(
-        //     [ActividadeController::class, 'index']
-        // )->with('success', 'Actividade created successfully.');
-        
-        // return \Redirect::route('actividades.index', ['area_nombre'=>'area1','equipo_nombre'=>'molino'])->with('success', 'Actividade created successfully.');
+
         return redirect()->route('actividades.index')
             ->with('success', 'Actividade created successfully.');
+
+        // return $this->index();
     }
 
     /**
@@ -169,9 +173,10 @@ class ActividadeController extends Controller
      */
     public function edit($id)
     {
-        $actividade = Actividade::find($id);
+        $actividad = Actividade::find($id);
+        $actividad->fecha_termino = Carbon::now();
 
-        return view('actividade.edit', compact('actividade'));
+        return view('actividade.edit', compact('actividad'));
     }
 
     /**
@@ -189,13 +194,15 @@ class ActividadeController extends Controller
         $actividade->update([
 
             'equipo_id' => $request->equipo_id, 
-            'user_id' => '1',
+            'user_id' => $request->user_id,
 
             'nombre' => $request->nombre,
             'fecha_inicio' => date('Y-m-d H:i:s', strtotime("$request->fecha_inicio $request->hora_inicio")),
+            'fecha_termino' => date('Y-m-d H:i:s', strtotime("$request->fecha_termino $request->fecha_termino")),
+
             'encargado' => $request->encargado,
             'auditor' => $request->auditor,
-            'estado' => 'estado',
+            'estado' => 'finalizado',
 
             'dep_mecanico' => $request->dep_mecanico,
             'dep_electrico' => $request->dep_electrico,
