@@ -48,6 +48,6 @@ Route::resource('equipos', App\Http\Controllers\EquipoController::class);
 Route::resource('puntosbloqueos', App\Http\Controllers\PuntosBloqueoController::class);
 
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('/dashboard');
-})->name('/dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->get('/welcome', function () {
+    return view('/welcome');
+})->name('/welcome');
