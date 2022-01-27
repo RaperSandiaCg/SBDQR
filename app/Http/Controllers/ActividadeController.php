@@ -58,29 +58,41 @@ class ActividadeController extends Controller
             $area = Area::where('nombre', $area_nombre)->first();
             $equipo = Equipo::where('nombre', $equipo_nombre)->first();
 
+            // $equipo = Equipo::where('nombre', $equipo_nombre)->first();
+
             if($area != null && $equipo != null){
 
                 session(['area' => $area]);
                 session(['equipo' => $equipo]);
-                $actividades = Actividade::where('equipo_id', $equipo->id)->paginate();
+                $actividades = $equipo->actividades;
+                dd($actividades);
+
 
             }else{
 
                 return $this->welcome();
             }
-
         }
         //retorn con request
         elseif ($request->area != null && $request->equipo != null)
         {
             session(['area' => $request->area]);
             session(['equipo' => $request->equipo]);
-            $actividades = Actividade::where('equipo_id', (json_decode($request->equipo)->id))->paginate();
+
+            $equipo = Equipo::where('tag', json_decode($request->equipo)->tag)->first();
+
+            $actividades = $equipo->actividades;
         }
         elseif ($request->session()->get('equipo') != null)
         {
+            
             $test = json_decode($request->session()->get('equipo'));
-            $actividades = Actividade::where('equipo_id', $test->id)->paginate();
+            $equipo = Equipo::where('id', $test->id)->first();
+            // dd($equipo->actividades);
+
+             //$actividades = Actividade::where('equipo_id', $test->id)->paginate();
+            $actividades = $equipo->actividades;
+
         }
         else{
 
@@ -89,8 +101,8 @@ class ActividadeController extends Controller
         
         $start = $this->getMesesSemanas($actividades);
 
-        return view('actividade.index', compact('actividades','start'))
-        ->with('i', (request()->input('page', 1) - 1) * $actividades->perPage());
+        return view('actividade.index', compact('start'))
+        ;
 
     }
 
@@ -106,7 +118,7 @@ class ActividadeController extends Controller
         $actividad = new Actividade();
 
         $actividad->equipo = Equipo::where('nombre', $test->nombre)->first();
-        $actividad->fecha_inicio = Carbon::now();
+        $actividad->fecha_inicio = Carbon::now()->setTimezone('America/Santiago');
         $actividad->encargado = auth()->user()->name.' '.auth()->user()->apellido;
 
         return view('actividade.create', compact('actividad'));
@@ -124,7 +136,6 @@ class ActividadeController extends Controller
         // $equipo = Equipo::where('nombre', $request->equipo)->first();
         //  dd($request);
 
-        Actividade::create($request->all());
         $actividad = Actividade::create([
 
             'equipo_id' => $request->equipo_id,
@@ -189,21 +200,20 @@ class ActividadeController extends Controller
     public function update(Request $request, Actividade $actividade)
     {
         request()->validate(Actividade::$rules);
-
         // $actividade->update($request->all());
         $actividade->update([
 
             'equipo_id' => $request->equipo_id, 
             'user_id' => $request->user_id,
-
             'nombre' => $request->nombre,
+
             'fecha_inicio' => date('Y-m-d H:i:s', strtotime("$request->fecha_inicio $request->hora_inicio")),
             'fecha_termino' => date('Y-m-d H:i:s', strtotime("$request->fecha_termino $request->fecha_termino")),
 
-            'encargado' => $request->encargado,
-            'auditor' => $request->auditor,
             'estado' => 'finalizado',
 
+            'auditor' => $request->auditor,
+            'encargado' => $request->encargado,
             'dep_mecanico' => $request->dep_mecanico,
             'dep_electrico' => $request->dep_electrico,
             'dep_operaciones' => $request->dep_operaciones,

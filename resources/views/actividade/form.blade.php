@@ -5,11 +5,11 @@
 
       <div class="form-group col-6">
         <label for="fecha_inicio">Fecha de inicio</label>
-        <input type="date" id="fecha_inicio" name="fecha_inicio" class="form-control"  value="{{ Carbon\Carbon::parse($actividad->fecha_inicio)->format('Y-m-d') }}">
+        <input type="date" id="fecha_inicio" name="fecha_inicio" class="form-control"  value="{{ Carbon\Carbon::parse($actividad->fecha_inicio)->format('Y-m-d') }}" @if($actividad->estado =='generado') readonly="readonly"@endif>
       </div>
       <div class="form-group col-6">
         <label for="hora_inicio">Hora de inicio</label>
-        <input type="time" id="hora_inicio" name="hora_inicio" class="form-control" value="{{ Carbon\Carbon::parse($actividad->fecha_inicio)->format('H:i') }}">
+        <input type="time" id="hora_inicio" name="hora_inicio" class="form-control" value="{{ Carbon\Carbon::parse($actividad->fecha_inicio)->format('H:i') }}" @if($actividad->estado =='generado') readonly="readonly"@endif>
       </div>
       @if($actividad->estado =='generado')         
         <div class="form-group col-6">
@@ -18,34 +18,34 @@
         </div>
         <div class="form-group col-6">
           <label for="hora_inicio">Hora de termino</label>
-          <input type="time" id="hora_termino" name="hora_termino" class="form-control" value="{{ $actividad->fecha_termino->format('H:i') }}">
+          <input type="time" id="hora_termino" name="hora_termino" class="form-control" value="{{ $actividad->fecha_termino->format('H:i') }}" >
         </div>
       @endif
 
       <div class="form-group col-md-12">
         <label for="encargado">Encargado</label>
-        <input type="text" id="encargado" name="encargado" class="form-control" value="{{$actividad->encargado}}" >
+        <input type="text" id="encargado" name="encargado" class="form-control" value="{{$actividad->encargado}}" readonly="readonly">
       </div>
       <div class="form-group col-md-12">
         <label for="nombre">Actividad</label>
-        <input type="text" id="nombre" name="nombre" class="form-control" value="{{$actividad->nombre}}">
+        <input type="text" id="nombre" name="nombre" class="form-control" value="{{$actividad->nombre}}" @if($actividad->estado =='generado') readonly="readonly"@endif>
       </div>
 
       <div class="form-group col-md-12">
         <label for="equipo">Equipo</label>
-        <input type="text"  class="form-control"  value="{{$actividad->equipo->nombre}} ">
+        <input type="text"  class="form-control"  value="{{$actividad->equipo->nombre}} " @if($actividad->estado =='generado') readonly="readonly"@endif>
       </div>
       <div class="form-group col-md-12">
         <label for="dep_operaciones">Departamental Operaciones</label>
-        <input type="text" name="dep_operaciones" class="form-control" value="{{$actividad->dep_operaciones}}">
+        <input type="text" name="dep_operaciones" class="form-control" value="{{$actividad->dep_operaciones}}" @if($actividad->estado =='generado') readonly="readonly"@endif>
       </div>
       <div class="form-group col-md-12">
         <label for="dep_electrico">Departamental Eléctrico</label>
-        <input type="text" name="dep_electrico" class="form-control" value="{{$actividad->dep_electrico}}">
+        <input type="text" name="dep_electrico" class="form-control" value="{{$actividad->dep_electrico}}" @if($actividad->estado =='generado') readonly="readonly"@endif>
       </div>
       <div class="form-group col-md-12">
         <label for="dep_mecanico">Departamental Mecánico</label>
-        <input type="text" name="dep_mecanico" class="form-control" value="{{$actividad->dep_mecanico}}">
+        <input type="text" name="dep_mecanico" class="form-control" value="{{$actividad->dep_mecanico}}" @if($actividad->estado =='generado') readonly="readonly"@endif>
       {{-- </div>
       <div class="form-group col-md-12">
         <label for="prueba_energia_o">Departamental Operaciones</label>
@@ -62,7 +62,7 @@
 
       <div class="form-group col-md-12">
         <label for="auditor">Auditor</label>
-        <input type="text" name="auditor" class="form-control" >
+        <input type="text" name="auditor" class="form-control" @if($actividad->estado =='generado') readonly="readonly"@endif>
       </div>
 
       <input type="hidden" name="equipo_id" value="{{$actividad->equipo->id}}">
