@@ -167,7 +167,7 @@
                                                         <a class="btn btn-sm btn-warning botonTab" href="{{ route('actividades.edit',$actividad->id) }}"><i class="fa fa-clock-o conico"></i> Terminar</a>
                                                         {{-- @elseif($actividad->estado == "terminado")  --}}
                                                         @else                                                    
-                                                        <a class="btn btn-sm btn-primary botonTab" href="{{ route('actividades.edit',$actividad->id) }}"><i class="fa fa-fw fa-eye conico"></i> ver</a>
+                                                        <a class="btn btn-sm btn-primary botonTab" href="{{ route('actividades.show',$actividad->id) }}"><i class="fa fa-fw fa-eye conico"></i> ver</a>
                                                         @endif
                                                     </td>
                                                 </tr>
