@@ -3,20 +3,20 @@
   <div class="row">
     <div class="form-group col-6">
       <label for="fecha_inicio">Fecha de inicio</label>
-      <input type="date" id="fecha_inicio" name="fecha_inicio" class="form-control"  value="{{ Carbon\Carbon::parse($actividad->fecha_inicio)->format('Y-m-d') }}" @if($actividad->estado =='generado') readonly="readonly"@endif>
+      <input type="date" id="fecha_inicio" name="fecha_inicio" class="form-control"  value="{{ Carbon\Carbon::parse($actividad->fecha_inicio)->format('Y-m-d') }}" @if($actividad->estado =='generado' || $actividad->estado =='terminado') readonly="readonly"@endif>
     </div>
     <div class="form-group col-6">
       <label for="hora_inicio">Hora de inicio</label>
-      <input type="time" id="hora_inicio" name="hora_inicio" class="form-control" value="{{ Carbon\Carbon::parse($actividad->fecha_inicio)->format('H:i') }}" @if($actividad->estado =='generado') readonly="readonly"@endif>
+      <input type="time" id="hora_inicio" name="hora_inicio" class="form-control" value="{{ Carbon\Carbon::parse($actividad->fecha_inicio)->format('H:i') }}" @if($actividad->estado =='generado' || $actividad->estado =='terminado') readonly="readonly"@endif>
     </div>
     @if($actividad->estado =='generado')         
       <div class="form-group col-6">
         <label for="fecha_inicio">Fecha de termino</label>
-        <input type="date" id="fecha_termino" name="fecha_termino" class="form-control"  value="{{ $actividad->fecha_termino->toDateString() }}">
+        <input type="date" id="fecha_termino" name="fecha_termino" class="form-control"  value="{{ $actividad->fecha_termino->toDateString() }}" @if($actividad->estado =='terminado')readonly="readonly"@endif>
       </div>
       <div class="form-group col-6">
         <label for="hora_inicio">Hora de termino</label>
-        <input type="time" id="hora_termino" name="hora_termino" class="form-control" value="{{ $actividad->fecha_termino->format('H:i') }}" >
+        <input type="time" id="hora_termino" name="hora_termino" class="form-control" value="{{ $actividad->fecha_termino->format('H:i') }}"  @if($actividad->estado =='terminado')readonly="readonly"@endif>
       </div>
     @endif
 
@@ -26,7 +26,7 @@
     </div>
     <div class="form-group col-md-12">
       <label for="nombre">Actividad</label>
-      <input type="text" id="nombre" name="nombre" class="form-control" value="{{$actividad->nombre}}" @if($actividad->estado =='generado') readonly="readonly"@endif>
+      <input type="text" id="nombre" name="nombre" class="form-control" value="{{$actividad->nombre}}" @if($actividad->estado =='generado' || $actividad->estado =='terminado') readonly="readonly"@endif>
     </div>
     <div class="form-group col-md-12">
       <label for="equipo">Equipo</label>
@@ -34,15 +34,15 @@
     </div>
     <div class="form-group col-md-12">
       <label for="dep_operaciones">Departamental Operaciones</label>
-      <input type="text" name="dep_operaciones" class="form-control" value="{{$actividad->dep_operaciones}}" @if($actividad->estado =='generado') readonly="readonly"@endif>
+      <input type="text" name="dep_operaciones" class="form-control" value="{{$actividad->dep_operaciones}}" @if($actividad->estado =='generado' || $actividad->estado =='terminado') readonly="readonly"@endif>
     </div>
     <div class="form-group col-md-12">
       <label for="dep_electrico">Departamental Eléctrico</label>
-      <input type="text" name="dep_electrico" class="form-control" value="{{$actividad->dep_electrico}}" @if($actividad->estado =='generado') readonly="readonly"@endif>
+      <input type="text" name="dep_electrico" class="form-control" value="{{$actividad->dep_electrico}}" @if($actividad->estado =='generado' || $actividad->estado =='terminado') readonly="readonly"@endif>
     </div>
     <div class="form-group col-md-12">
       <label for="dep_mecanico">Departamental Mecánico</label>
-      <input type="text" name="dep_mecanico" class="form-control" value="{{$actividad->dep_mecanico}}" @if($actividad->estado =='generado') readonly="readonly"@endif>
+      <input type="text" name="dep_mecanico" class="form-control" value="{{$actividad->dep_mecanico}}" @if($actividad->estado =='generado' || $actividad->estado =='terminado') readonly="readonly"@endif>
     </div>
     {{-- 
     <div class="form-group col-md-12">
@@ -59,7 +59,7 @@
     </div> --}}
     <div class="form-group col-md-12">
       <label for="auditor">Auditor</label>
-      <input type="text" name="auditor" class="form-control" @if($actividad->estado =='generado') readonly="readonly"@endif>
+      <input type="text" name="auditor" class="form-control" @if($actividad->estado =='generado' || $actividad->estado =='terminado') readonly="readonly"@endif>
     </div>
 
     @if($actividad->estado =='generado')         
