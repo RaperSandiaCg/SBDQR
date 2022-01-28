@@ -30,7 +30,7 @@
     </div>
     <div class="form-group col-md-12">
       <label for="equipo">Equipo</label>
-      <input type="text"  class="form-control"  value="{{$actividad->equipo->nombre}} "  readonly="readonly">
+      <input type="text"  class="form-control" name="nombre_equipo"  value="{{$actividad->equipo->nombre}} "  readonly="readonly">
     </div>
     <div class="form-group col-md-12">
       <label for="dep_operaciones">Departamental Operaciones</label>

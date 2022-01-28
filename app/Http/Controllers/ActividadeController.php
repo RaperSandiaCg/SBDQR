@@ -65,7 +65,7 @@ class ActividadeController extends Controller
                 session(['area' => $area]);
                 session(['equipo' => $equipo]);
                 $actividades = $equipo->actividades;
-                dd($actividades);
+                // dd($actividades);
 
 
             }else{
@@ -135,7 +135,6 @@ class ActividadeController extends Controller
     {         
         // $equipo = Equipo::where('nombre', $request->equipo)->first();
         //  dd($request);
-
         $actividad = Actividade::create([
 
             'equipo_id' => $request->equipo_id,
@@ -200,6 +199,17 @@ class ActividadeController extends Controller
     public function update(Request $request, Actividade $actividade)
     {
         request()->validate(Actividade::$rules);
+
+        $request->validate([
+            'file' => 'image|required'
+        ]);
+        // dd($request->file('file'));
+        $imgane = "";
+        if ($request->hasFile('file')) {
+            $imgane = time().'_'.$request->file('file')->getClientOriginalName();            
+            $request->file('file')->storeAs('public/fotos/'.$request->nombre_equipo, $imgane);
+        }
+        
         // $actividade->update($request->all());
         $actividade->update([
 
@@ -217,8 +227,7 @@ class ActividadeController extends Controller
             'dep_mecanico' => $request->dep_mecanico,
             'dep_electrico' => $request->dep_electrico,
             'dep_operaciones' => $request->dep_operaciones,
-
-            
+            'foto' => $imgane,
 
             // 'prueba_energia_m' => $request->prueba_energia_m,
             // 'prueba_energia_e' => $request->prueba_energia_e,
@@ -226,7 +235,7 @@ class ActividadeController extends Controller
 
         
 
-          ]);
+        ]);
         return redirect()->route('actividades.index')
             ->with('success', 'Actividade updated successfully');
     }

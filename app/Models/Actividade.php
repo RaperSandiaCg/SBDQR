@@ -58,6 +58,8 @@ class Actividade extends Model
         'dep_operaciones',
 
         'estado',
+        'foto',
+
 
         'prueba_energia_e',
         'prueba_energia_m',
