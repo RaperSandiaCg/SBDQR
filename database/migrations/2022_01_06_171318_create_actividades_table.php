@@ -34,6 +34,7 @@ class CreateActividadesTable extends Migration
             $table->string('prueba_energia_o', 100)->nullable();
 
             $table->string('estado', 50)->nullable();
+            $table->string('foto', 100)->nullable();
 
             $table->unsignedBigInteger('equipo_id');
             $table->unsignedBigInteger('user_id');

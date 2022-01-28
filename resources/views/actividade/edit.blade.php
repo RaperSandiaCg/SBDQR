@@ -10,7 +10,15 @@
             <div class="col-md-6 pt-3">
 
                 @includeif('partials.errors')
-
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{$error}}</li>
+                        @endforeach
+                    </ul>
+                    </div>        
+                @endif 
                 <div class="card card-success">
                     <div class="card-header">
                         <span class="card-title">Terminar Actividade</span>
@@ -24,16 +32,7 @@
                     <div class="card-footer"> 
                         <button type="submit" class="btn btn-success ">Finalizar</button>  
                     </div>
-                </form>
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                        <li>{{$error}}</li>
-                        @endforeach
-                    </ul>
-                    </div>        
-                @endif 
+                </form>                
                 </div>
             </div>
         </div>
