@@ -113,7 +113,7 @@
     use Carbon\Carbon;
     @endphp 
     @foreach($start as $str)        
-        <div class="card card-default collapsed-card">
+        <div class="card card-default ">
             <div class="card-header">
                 <h3 class="card-title">{{$str[0]}}</h3>
                 <div class="card-tools">

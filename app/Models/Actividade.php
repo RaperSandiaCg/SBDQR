@@ -87,6 +87,13 @@ class Actividade extends Model
     }
 
 
+    public function users()
+    {
+        return $this->belongsToMany(User::class , 'users_actividades')
+            ->withPivot('rol')
+            ->withTimestamps();
+    }
+
     
 
 }

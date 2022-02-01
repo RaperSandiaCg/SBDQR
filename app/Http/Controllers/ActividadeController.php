@@ -120,7 +120,6 @@ class ActividadeController extends Controller
         $actividad->equipo = Equipo::where('nombre', $test->nombre)->first();
         $actividad->fecha_inicio = Carbon::now()->setTimezone('America/Santiago');
         $actividad->encargado = auth()->user()->name.' '.auth()->user()->apellido;
-
         return view('actividade.create', compact('actividad'));
     }
 
@@ -154,6 +153,8 @@ class ActividadeController extends Controller
             // 'prueba_energia_e' => $request->prueba_energia_e,
             // 'prueba_energia_o' => $request->prueba_energia_o,
         ]);
+        $actividad->users()->attach(auth()->user()->id, ['rol' => 'encargado']);
+        // dd($actividad->all());
 
 
         return redirect()->route('actividades.index')
@@ -171,7 +172,6 @@ class ActividadeController extends Controller
     public function show($id)
     {
         $actividade = Actividade::find($id);
-
         return view('actividade.show', compact('actividade'));
     }
 
@@ -183,9 +183,9 @@ class ActividadeController extends Controller
      */
     public function edit($id)
     {
+        
         $actividad = Actividade::find($id);
         $actividad->fecha_termino = Carbon::now()->setTimezone('America/Santiago');
-
         return view('actividade.edit', compact('actividad'));
     }
 
