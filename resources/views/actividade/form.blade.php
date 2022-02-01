@@ -75,7 +75,7 @@
     @endif
 
     <input type="hidden" name="equipo_id" value="{{$actividad->equipo->id}}">
-    <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
+    <input type="hidden" name="user_id" value="{{$actividad->user->id}}">
   </div>
 </div>
 
