@@ -11,11 +11,11 @@ use Illuminate\Http\Request;
  */
 class EquipoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('auth', ['only' => ['create','edit','destroy']]);
+    }
+
     public function index()
     {
         $equipos = Equipo::paginate();

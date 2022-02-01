@@ -11,11 +11,11 @@ use Illuminate\Http\Request;
  */
 class AreaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('auth', ['only' => ['create','edit','destroy']]);
+    }
+
     public function index()
     {
         $areas = Area::paginate();
