@@ -162,7 +162,7 @@
                                                     <td>{{$dateAct2->formatLocalized('%A %d')}}</td>
                                                     <td>{{$hora}}</td>
                                                     <td>{{$actividad->nombre}}</td>
-                                                    <td>
+                                                    <td class="btn-tablas">
                                                         @if($actividad->estado == "generado")
                                                         <a class="btn btn-sm btn-warning botonTab" href="{{ route('actividades.edit',$actividad->id) }}"><i class="fa fa-clock-o conico"></i> Terminar</a>
                                                         {{-- @elseif($actividad->estado == "terminado")  --}}
