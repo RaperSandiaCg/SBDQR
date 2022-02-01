@@ -41,6 +41,9 @@ Route::get('area/{area_id}/equipo/{equipo_id}', [ActividadeController::class, 'i
 
 Route::get('/', [ActividadeController::class, 'welcome']);
 
+Route::get('/dashboard','DashboardController@dashboard')->name('dashboard');
+
+
 Route::resource('actividades', App\Http\Controllers\ActividadeController::class);
 Route::resource('areas', App\Http\Controllers\AreaController::class);
 Route::resource('empresas', App\Http\Controllers\EmpresaController::class);
