@@ -10,6 +10,15 @@
             <div class="col-md-6 pt-3">
 
                 @includeif('partials.errors')
+                @if ($errors->any())
+                    <div class="alert alert-danger alert-dismissible">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{$error}}</li>
+                        @endforeach
+                    </ul>
+                    </div>        
+                @endif 
                 <div class="card card-primary">
                     <div class="card-header">
                         <span class="card-title">Ingresar Actividadad</span>
@@ -26,15 +35,6 @@
                         </div>
                     </form>
                 </div>
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                        <li>{{$error}}</li>
-                        @endforeach
-                    </ul>
-                    </div>        
-                @endif 
             </div>
         </div>
     </section>
