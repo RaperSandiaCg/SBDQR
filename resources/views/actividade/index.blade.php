@@ -163,11 +163,20 @@
                                                     <td>{{$hora}}</td>
                                                     <td>{{$actividad->nombre}}</td>
                                                     <td class="btn-tablas">
-                                                        @if($actividad->estado == "generado")
-                                                        <a class="btn btn-sm btn-warning botonTab" href="{{ route('actividades.edit',$actividad->id) }}"><i class="fa fa-clock-o conico"></i> Terminar</a>
-                                                        {{-- @elseif($actividad->estado == "terminado")  --}}
-                                                        @else                                                    
-                                                        <a class="btn btn-sm btn-primary botonTab" href="{{ route('actividades.show',$actividad->id) }}"><i class="fa fa-fw fa-eye conico"></i> ver</a>
+                                                        {{-- @php
+                                                        dd(auth()->user()->id);
+                                                        @endphp --}}
+                                                        @if($actividad->estado == "generado" && Auth::check())
+
+                                                            @if ($actividad->encargado()->id == auth()->user()->id)
+
+                                                                <a class="btn btn-sm btn-warning botonTab" href="{{ route('actividades.edit',$actividad->id) }}"><i class="fa fa-clock-o conico"></i> Terminar</a>
+
+                                                            @endif
+                                                        @else    
+
+                                                            <a class="btn btn-sm btn-primary botonTab" href="{{ route('actividades.show',$actividad->id) }}"><i class="fa fa-fw fa-eye conico"></i> ver</a>
+
                                                         @endif
                                                     </td>
                                                 </tr>

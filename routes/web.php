@@ -54,3 +54,8 @@ Route::resource('puntosbloqueos', App\Http\Controllers\PuntosBloqueoController::
 Route::middleware(['auth:sanctum', 'verified'])->get('/welcome', function () {
     return view('/welcome');
 })->name('/welcome');
+
+
+
+Route::post('/register', 'RegisterController@auth\register');
+
