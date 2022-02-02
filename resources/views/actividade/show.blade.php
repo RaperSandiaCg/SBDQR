@@ -38,6 +38,10 @@
                             <strong>Equipo Id:</strong>
                             {{ $actividade->equipo_id }}
                         </div>
+                        <div class="form-group">
+                            <strong>Encargado:</strong>
+                            {{ $actividade->encargado()->nombreCompleto() }}
+                        </div>
                     </div>
                 </div>
             </div>

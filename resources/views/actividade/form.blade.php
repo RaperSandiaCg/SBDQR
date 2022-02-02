@@ -22,7 +22,7 @@
 
     <div class="form-group col-md-12">
       <label for="encargado">Encargado</label>
-      <input type="text" id="encargado" name="encargado" class="form-control" value="{{$actividad->encargado}}" readonly="readonly">
+      <input type="text" id="encargado" name="encargado" class="form-control" value="{{auth()->user()->nombreCompleto()}}" readonly="readonly">
     </div>
     <div class="form-group col-md-12">
       <label for="nombre">Actividad</label>
@@ -44,22 +44,10 @@
       <label for="dep_mecanico">Departamental Mecánico</label>
       <input type="text" name="dep_mecanico" class="form-control" value="{{$actividad->dep_mecanico}}" @if($actividad->estado =='generado' || $actividad->estado =='terminado') readonly="readonly"@endif>
     </div>
-    {{-- 
-    <div class="form-group col-md-12">
-      <label for="prueba_energia_o">Departamental Operaciones</label>
-      <input type="text" name="prueba_energia_o" class="form-control" >
-    </div>
-    <div class="form-group col-md-12">
-      <label for="prueba_energia_e">Departamental Eléctrico</label>
-      <input type="text" name="prueba_energia_e" class="form-control" >
-    </div>
-    <div class="form-group col-md-12">
-      <label for="prueba_energia_m">Departamental Mecánico</label>
-      <input type="text" name="prueba_energia_m" class="form-control" >
-    </div> --}}
+
     <div class="form-group col-md-12">
       <label for="auditor">Auditor</label>
-      <input type="text" name="auditor" class="form-control" @if($actividad->estado =='generado' || $actividad->estado =='terminado') readonly="readonly"@endif>
+      <input type="text" name="auditor" class="form-control" value="{{$actividad->auditor}} " @if($actividad->estado =='generado' || $actividad->estado =='terminado') readonly="readonly"@endif>
     </div>
 
     @if($actividad->estado =='generado')         
@@ -75,10 +63,22 @@
     @endif
 
     <input type="hidden" name="equipo_id" value="{{$actividad->equipo->id}}">
-    <input type="hidden" name="user_id" value="{{$actividad->user->id}}">
+    <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
   </div>
 </div>
-
+    {{-- 
+    <div class="form-group col-md-12">
+      <label for="prueba_energia_o">Departamental Operaciones</label>
+      <input type="text" name="prueba_energia_o" class="form-control" >
+    </div>
+    <div class="form-group col-md-12">
+      <label for="prueba_energia_e">Departamental Eléctrico</label>
+      <input type="text" name="prueba_energia_e" class="form-control" >
+    </div>
+    <div class="form-group col-md-12">
+      <label for="prueba_energia_m">Departamental Mecánico</label>
+      <input type="text" name="prueba_energia_m" class="form-control" >
+    </div> --}}
     
 
 {{-- <div class="box box-info padding-1">

@@ -89,9 +89,13 @@ class Actividade extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class , 'users_actividades')
-            ->withPivot('rol')
-            ->withTimestamps();
+        return $this->belongsToMany(User::class , 'users_actividades','actividade_id','user_id'
+        )
+            ->withPivot('rol');
+    }
+    public function encargado()
+    {
+        return $this->users()->where('rol','encargado')->firstOrFail();
     }
 
     

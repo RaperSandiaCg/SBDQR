@@ -59,6 +59,11 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+    
+    public function nombreCompleto()
+    {
+        return $this->name.' '.$this->apellido;
+    }
 
 
 }

@@ -20,7 +20,7 @@ class ActividadeController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['only' => ['create']]);
+        $this->middleware('auth', ['only' => ['create','edit']]);
     }
 
     public function terminar()
@@ -64,7 +64,8 @@ class ActividadeController extends Controller
 
                 session(['area' => $area]);
                 session(['equipo' => $equipo]);
-                $actividades = $equipo->actividades;
+                // $actividades = $equipo->actividades;
+                $actividades = Actividade::all()->where('equipo_id',$equipo->id);
                 // dd($actividades);
 
 
@@ -81,7 +82,9 @@ class ActividadeController extends Controller
 
             $equipo = Equipo::where('tag', json_decode($request->equipo)->tag)->first();
 
-            $actividades = $equipo->actividades;
+            // $actividades = $equipo->actividades;
+            $actividades = Actividade::all()->where('equipo_id',$equipo->id);
+
         }
         elseif ($request->session()->get('equipo') != null)
         {
@@ -91,7 +94,9 @@ class ActividadeController extends Controller
             // dd($equipo->actividades);
 
              //$actividades = Actividade::where('equipo_id', $test->id)->paginate();
-            $actividades = $equipo->actividades;
+             $actividades = Actividade::all()->where('equipo_id',$equipo->id);
+
+            // $actividades = $equipo->actividades;
 
         }
         else{
@@ -119,7 +124,8 @@ class ActividadeController extends Controller
 
         $actividad->equipo = Equipo::where('nombre', $test->nombre)->first();
         $actividad->fecha_inicio = Carbon::now()->setTimezone('America/Santiago');
-        $actividad->encargado = auth()->user()->name.' '.auth()->user()->apellido;
+        $actividad->encargado = auth()->user()->nombreCompleto();
+
         return view('actividade.create', compact('actividad'));
     }
 
@@ -137,11 +143,11 @@ class ActividadeController extends Controller
         $actividad = Actividade::create([
 
             'equipo_id' => $request->equipo_id,
-            'user_id' => $request->user_id,
+             'user_id' => $request->user_id, //eliminar en migration
 
             'nombre' => $request->nombre,
             'fecha_inicio' => date('Y-m-d H:i:s', strtotime("$request->fecha_inicio $request->hora_inicio")),
-            'encargado' => $request->encargado,
+            // 'encargado' => $request->encargado,
             'auditor' => $request->auditor,
             'estado' => 'generado',
 
@@ -153,9 +159,15 @@ class ActividadeController extends Controller
             // 'prueba_energia_e' => $request->prueba_energia_e,
             // 'prueba_energia_o' => $request->prueba_energia_o,
         ]);
-        $actividad->users()->attach(auth()->user()->id, ['rol' => 'encargado']);
-        // dd($actividad->all());
 
+        // Enlaza el usuario encargado a la actividad
+        $actividad->users()->attach(auth()->user()->id, ['rol' => 'encargado']);
+
+        // $test = Actividade::with('users')->findOrFail('10');
+
+        // dd($actividad->users()->where('rol', 'encargado'));
+        // $testest = $test->encargado();
+        // return json_encode($testest->nombreCompleto());
 
         return redirect()->route('actividades.index')
             ->with('success', 'Actividade created successfully.');

@@ -13,7 +13,19 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Basic-Configuration
     |
     */
+    [
+        'text' => 'login',
+        'topnav' => true,
+        'url'=> 'login',
+        'can'=> 'logged-in',
+    ],
+    [
+        'text' => 'register',
+        'topnav' => true,
+        'url'=> 'register',
+        'can'=> 'logged-in',
 
+    ],
     'title' => 'SQR',
     'background' => 'red',
     'title_prefix' => '',
@@ -339,6 +351,7 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Menu-Configuration
     |
     */
+
 
     'filters' => [
         JeroenNoten\LaravelAdminLte\Menu\Filters\GateFilter::class,
