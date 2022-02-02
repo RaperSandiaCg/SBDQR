@@ -19,6 +19,7 @@ class CreateUsersActividadesTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('actividad_id');
 
+            $table->string('rol', 50);
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('actividad_id')->references('id')->on('actividades')->onDelete('cascade')->onUpdate('cascade');
