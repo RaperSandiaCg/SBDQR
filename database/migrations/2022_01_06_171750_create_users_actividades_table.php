@@ -17,12 +17,12 @@ class CreateUsersActividadesTable extends Migration
             $table->id();
 
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('actividad_id');
+            $table->unsignedBigInteger('actividade_id');
 
             $table->string('rol', 50);
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('actividad_id')->references('id')->on('actividades')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('actividade_id')->references('id')->on('actividades')->onDelete('cascade')->onUpdate('cascade');
 
             $table->timestamps();
         });

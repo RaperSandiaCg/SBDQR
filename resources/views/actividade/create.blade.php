@@ -1,10 +1,11 @@
 {{-- @extends('layouts.app') --}}
 @extends('adminlte::page')
-@section('template_title')
-    Create Actividade
-@endsection
+
+@extends('layouts.subHeader')
+
 
 @section('content')
+
     <section class="content container-fluid">
         <div class="row justify-content-center">
             <div class="col-md-6 pt-3">

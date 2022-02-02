@@ -57,5 +57,4 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/welcome', function () {
 
 
 
-Route::post('/register', 'RegisterController@auth\register');
 
