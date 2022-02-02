@@ -1,7 +1,8 @@
 {{-- @extends('layouts.app') --}}
 @extends('adminlte::page')
-
-@extends('layouts.subHeader')
+@section('template_title')
+    Agregar Actividad
+@endsection
 
 
 @section('content')

@@ -1,0 +1,43 @@
+.ttable{    
+    text-align: center;
+    width: 100%;  
+}
+
+.conico{
+    margin-bottom: -0.25rem !important;
+}
+
+.botonTab{
+    width: 90px;
+}
+#btn-mas{
+    display: none;
+}
+.contenido{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+.redes a, .btn-mas label{
+    display: block;
+    text-decoration: none;
+    background: #673ab7;
+    color: #fff;
+    width: 55px;
+    height: 55px;
+    line-height: 55px;
+    text-align: center;
+    border-radius: 50%;
+    box-shadow: 0px 1px 10px rgba(0,0,0,0.4);
+    transition: all 500ms ease;
+}
+.redes a:hover{
+    background: #fff;
+    color: #673ab7;
+}
+.redes a{
+    margin-bottom: 10px;
+    opacity: 1;
+    visibility: visible;
+}
+
